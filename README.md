@@ -1,1 +1,2 @@
-# turads.com
+# themezoz
+themezoz

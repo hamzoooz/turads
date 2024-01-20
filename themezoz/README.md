@@ -1,2 +1,0 @@
-# themezoz
-themezoz
