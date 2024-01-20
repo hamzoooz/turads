@@ -1,0 +1,22 @@
+psycopg2-binary
+Django 
+django-ckeditor 
+django-js-asset 
+Pillow 
+sqlparse 
+typing_extensions 
+django-allauth
+django-widget_tweaks
+asgiref
+python-decouple
+squareup
+paypalrestsdk
+django-filter
+djangorestframework
+django-taggit
+django-crispy-forms
+drf_social_oauth2
+
+# django-otp 
+# django-otp-plugins
+

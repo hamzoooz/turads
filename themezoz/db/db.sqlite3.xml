@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE items>
+<items>
+    <row>
+       <ID>1</ID>
+       <Name>Created by</Name>
+       <Hint>A real human, without the use of artificial intelligence.</Hint>
+    </row>
+    <row>
+       <ID>2</ID>
+       <Name>https://SQL.BanD</Name>
+       <Hint>The most secure, fast, efficient web-sql client</Hint>
+    </row>
+    <row>
+       <ID>3</ID>
+       <Name>SQL Online</Name>
+       <Hint>Next gen SQL editor</Hint>
+    </row>
+    <row>
+       <ID>4</ID>
+       <Name>Kirill N.</Name>
+       <Hint>https://www.linkedin.com/in/sqliteonlinecom</Hint>
+    </row>
+    <row>
+       <ID>5</ID>
+       <Name>Donate (ERC20: ETH or USDC) </Name>
+       <Hint>0xCcc227E5615D4FADd758228Bab12ceb465D4ED18</Hint>
+    </row>
+    <row>
+       <ID>6</ID>
+       <Name>Donate (BTC)</Name>
+       <Hint>bc1q25zqmgll2fz0tyduusyfageh3jh7htcwjt2rdk</Hint>
+    </row>
+    <row>
+       <ID>7</ID>
+       <Name>Chart</Name>
+       <Hint>LINE-SELECT name, cos(id), sin(id) FROM demo;</Hint>
+    </row>
+    <row>
+       <ID>8</ID>
+       <Name>Short CODE</Name>
+       <Hint>s* tableName => SELECT * FROM tableName
+sf tableName => SELECT columns FROM tableName
+sc tableName => SELECT count(*) FROM tableName
+sl tableName => SELECT * FROM tableName ORDER BY key DESC LIMIT 100;
+ct => CREATE TABLE
+ii tableName => INSERT INTO
+us tableName => UPDATE SET
+uw tableName => UPDATE SET WHERE
+df tableName => DELETE FROM
+dw tableName => DELETE FROM WHERE</Hint>
+    </row>
+    <row>
+       <ID>9</ID>
+       <Name>SqLite 3.44.0</Name>
+       <Hint>SQL OnLine on JavaScript</Hint>
+    </row>
+    <row>
+       <ID>10</ID>
+       <Name>[RightClick] mouse</Name>
+       <Hint>Opens many additional features</Hint>
+    </row>
+    <row>
+       <ID>11</ID>
+       <Name>Left-Panel, Table</Name>
+       <Hint>[RightClick] mouse "Context menu"</Hint>
+    </row>
+    <row>
+       <ID>12</ID>
+       <Name>Tabs</Name>
+       <Hint>mouse: [RightClick] , [MiddleClick] , [Wheel] , [LeftClick]</Hint>
+    </row>
+    <row>
+       <ID>13</ID>
+       <Name>SQL Editor</Name>
+       <Hint>autocomplete: [Ctrl-Space] or [Alt-Space]; run: [Shift-Enter]</Hint>
+    </row>
+    <row>
+       <ID>14</ID>
+       <Name>Size table</Name>
+       <Hint>Fast scroll million rows</Hint>
+    </row>
+    <row>
+       <ID>15</ID>
+       <Name>Share</Name>
+       <Hint>Create public link DB</Hint>
+    </row>
+    <row>
+       <ID>16</ID>
+       <Name>12</Name>
+       <Hint>Number of color themes</Hint>
+    </row>
+    <row>
+       <ID>17</ID>
+       <Name>ai.Url</Name>
+       <Hint>https://sqliteonline.com/LICENSE</Hint>
+    </row>
+    <row>
+       <ID>18</ID>
+       <Name>ai.Color</Name>
+       <Hint>#9393ad</Hint>
+    </row>
+    <row>
+       <ID>19</ID>
+       <Name>ai.Image</Name>
+       <Hint>Blob - png, jpg, gif or String(base64) [DbClick] row</Hint>
+    </row>
+    <row>
+       <ID>20</ID>
+       <Name>SQL</Name>
+       <Hint>Syntax example library</Hint>
+    </row>
+    <row>
+       <ID>21</ID>
+       <Name>CREATE</Name>
+       <Hint>CREATE TABLE table_name (col1, col2)</Hint>
+    </row>
+    <row>
+       <ID>22</ID>
+       <Name>SELECT</Name>
+       <Hint>SELECT * FROM table_name</Hint>
+    </row>
+    <row>
+       <ID>23</ID>
+       <Name>INSERT</Name>
+       <Hint>INSERT INTO table_name (col1, col2) VALUES ("example","test")</Hint>
+    </row>
+    <row>
+       <ID>24</ID>
+       <Name>UPDATE</Name>
+       <Hint>UPDATE table_name SET col1="work" WHERE col2="test"</Hint>
+    </row>
+    <row>
+       <ID>25</ID>
+       <Name>DELETE</Name>
+       <Hint>DELETE FROM table_name</Hint>
+    </row>
+</items>

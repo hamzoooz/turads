@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+ 
+    <title> {% block title %} {{collection }} {% endblock title %} </title>
+    <meta name="description" content=" {% block description %} {{ collection }} ||  Navigate your creativity with precision on our Dashboard Category page. Explore a dedicated collection of free templates, themes, and premium items tailored specifically for dashboards. Download high-quality resources designed to enhance your data visualization and analytics projects. Elevate your dashboard design with curated elements crafted for efficiency and style. Dive into our Dashboard Category and transform your data into compelling visual stories effortlessly. {% endblock %} themezoz.com #themezoz themes free themes free templates #wordpress #templates "> 
+    
+{% block content %}
+
+
+<div class="container d-flex  ">
+    <div class="py-1 bg-secondary1  d-flex align-items-center ">
+        <a href="/" class="text-secondary  p-2 "><i class="fa fa-home"></i> </a><i class="fa fa-caret-right text-secondary  "></i>
+        <a href="{% url 'collections'  %}" class="text-secondary  p-2 "> Collections </a><i class="fa fa-caret-right text-secondary"></i>
+        <span class="text-secondary  p-2 ">{{ collection }}  </span>
+    </div>
+</div>
+
+
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+            {% for item in categories  %}
+                <div class="col-6 col-md-4 col-lg-3 ">
+                    <div class="card-body mt-3">
+                        <div class="card">
+                            <a href="{% url 'category_details' collection_item.slug item.slug item.id  %}">
+                                <div class="coner card-img-top lazyOwl  rounded img-thumbnail  mx-auto d-block " style="background-image: url('{{ item.image.url }}') ; width: 15rem; height: 150px; background-position: top; background-size: cover; background-repeat: no-repeat; "> </div>
+                                    <div class="card-body p-1"> <h5 class="card-title name-book text-center fs-6 ">{{ item.name }}</h5> </a>
+                                </div>
+                            </a>
+                        </div><!-- card  -->
+                    </div><!-- card -body -->
+                </div><!--col-6 col-md-4 -->
+            {% endfor %}
+        </div><!-- .row -->
+    </div><!-- .container -->
+</div><!-- ./py-5  -->
+
+{% endblock content %}
+

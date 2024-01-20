@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<title> {% block title %} Blog{% endblock title %} </title>
+
+    {% block style %}  
+        {% block stylesheet %}
+            <link href="{% static 'blog/css/common-css/swiper.css' %}" rel="stylesheet">
+            <link href="{% static 'blog/css/common-css/ionicons.css' %}" rel="stylesheet">
+            <link href="{% static 'blog/css/bona/styles.css' %}" rel="stylesheet">
+            <link href="{% static 'blog/css/bona/responsive.css' %}" rel="stylesheet">
+            <link rel="stylesheet" href="{% static 'dashboard/author/css/prism.css' %}">
+        {% endblock stylesheet %}
+    {% endblock style %} 
+ 
+	<header>
+		<div class="container-fluid position-relative no-side-padding">
+
+			<a href="{% url 'blog:home' %}" class="logo">  <img src="{% static 'assets/images/logo.png' %}" alt="Logo Image"></a>
+			<div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
+			<ul class="main-menu visible-on-click" id="main-menu">
+
+				<li><a href="{% url 'blog:categories_list' %}">Categories</a></li>
+                <li><a href="#">About</a></li>
+
+			</ul><!-- main-menu -->
+			<div class="src-area">
+				<form method="get" action="{% url 'blog:article_search_list_view' %}">
+					<button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
+					<input class="src-input" type="text" name="q" placeholder="Search for Articles">
+				</form>
+			</div>
+		</div><!-- conatiner -->
+	</header>
+
+
+   <!-- Messages -->
+      {% block messages %}
+       <div class="row">
+        <div class="col-md-12">
+            {% if messages %}
+                {% for message in messages %}
+                  <div class="text-center font-weight-bold alert alert-dismissible fade show
+                       {% if message.level_tag == 'error' %}
+                       alert-danger
+                       {% else %}
+                       alert-{{ message.tags }}
+                       {% endif %}">
+                    {{ message }}
+                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                {% endfor %}
+              {% endif %}
+        </div>
+      </div>
+      {% endblock messages %}
+
+    {% block content %}
+    {% endblock content %}
+ 
+    <script src="{% static 'blog/js/common-js/tether.min.js' %}"></script>
+    <script src="{% static 'blog/js/common-js/swiper.js' %}"></script>
+    <script src="{% static 'blog/js/common-js/scripts.js' %}"></script>
+    <script src="{% static 'blog/js/blog/prism.js' %}"></script>
+ {% block scripts %}
+ {% endblock scripts %}
+</body>
+</html>

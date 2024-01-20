@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+<title> {% block title %} Search for {{ query }} {% endblock title %} </title>
+
+{% block content %}
+<h2 class="text-white text-lead bg-success bg-gradient p-2 "> Result Of <span> "{{ query }}" - {{ items|length  }} <span></h2>
+{% if items %}
+<div class="container-fluid">
+    <div class="row">
+        {% for item in items %}
+          <div class="col-6 col-md-4 col-lg-3 " style="padding: 2px;" >
+            <div class="parent" >
+                {% include 'templates-parts/item.html' %}
+            </div>
+          </div><!--col-6 col-md-4 -->
+        {% endfor %}
+    </div><!-- .row -->
+</div><!-- .container -->
+{% else %}
+<div class="serach-book">
+    <div class="items-user bg-gradient py-2 pt-0 " style="--bs-bg-opacity: .6;">
+        <h2 class="text-white text-lead bg-success bg-gradient p-2 "> No Result for  <span style="color:rgb(255, 0, 0) !important;"> "{{ query }}" <span></h2>
+        <div class="container ">
+            <div class="row">
+                <div class="card  h-100">
+                    <div class="coner card-img-top lazyOwl  rounded img-thumbnail  mx-auto d-block " style="background-image: url('{% static 'assets/images/404-in-search-page.jpg' %}') ; width: 15rem; height: 300px; background-position: center; background-size: contain; background-repeat: no-repeat; ">
+                    </div> <div class="card-body p-1"> <h5 class="card-title name-book text-center fs-6 m-3  "> </h5> </div>
+                    <p class="lead  text-center "> There is no items match to <span style="color:rgba(196, 29, 29, 0.771) !important;" > "{{ query }}" </span> tray anther words and try again ! < /p> 
+                    <br>    
+                    <br>    
+                    <a href="/" class="btn btn-success btn-lg  " style="margin:0 30% ;"> <i class="fa fa-plus"></i> Add This Item if You have ! </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock content %}

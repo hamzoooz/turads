@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<title> {% block title %}Editors choice{% endblock title %} </title>
+<meta name="description" content=" {% block description %} Experience excellence with our Editor's Choice page. Discover handpicked free templates, themes, dashboards, and premium items curated by our editors. Elevate your projects with top-notch design, meticulously selected for its quality and innovation. Download from our Editor's Choice collection to infuse your work with the best in style and functionality. Explore the pinnacle of design and transform your creations with our premium, editor-approved resources.{% endblock %} themezoz.com #themezoz themes free themes free templates #wordpress #templates "> 
+
+{% block content %}
+  
+<h1 class="container text-center ">Editors choice</h1>
+<div class="container d-flex  ">
+  <div class="py-1 bg-secondary1  d-flex align-items-center ">
+    <a href="/" class="text-secondary  p-2 "><i class="fa fa-home"></i> </a><i class="fa fa-caret-right text-secondary  "></i>
+    <a href="{% url 'collections' %}" class="text-secondary  p-2">Collections  </a> <i class="fa fa-caret-right text-secondary  "></i>
+    <span class="text-secondary  p-2 "> Editors choice</span>
+  </div>
+</div>
+
+ 
+
+{% if items_list %} 
+<div class="container">
+  <div class="row">
+    {% for item in items_list %}
+    <div class="col-6 col-md-4 col-lg-3 " style="padding: 2px;" >
+            <div class="parent" >
+              {% include 'templates-parts/item.html' %}
+            </div>
+          </div><!--col-6 col-md-4 -->
+          {% endfor %}
+    </div><!-- .row -->
+
+{% include "inc/pagination.html" %}
+
+  {% comment %} templates\inc\pagination.html {% endcomment %}
+</div><!-- .container -->
+
+
+
+{% else %}
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+                <div class="col-12  ">
+                    <div class="card-body mt-3">
+                        <div class="card alert  ">
+                             <div class="card-body p-1"> <h5 class="card-title name-book text-center fs-6 "> no content ^_^ you can add some themes or template from here </h5> </a>
+                        </div><!-- card  -->
+                    </div><!-- card -body -->
+                </div><!--col-6 col-md-4 -->
+        </div><!-- .row -->
+    </div><!-- .container -->
+</div><!-- ./py-5  -->
+{% endif %}
+
+
+
+{% endblock content %}
+
+  

@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% comment %} {% load admin_urls %} {% endcomment %}
+  <title> {% block title %} My Store  {% endblock title %} </title>
+
+
+{% load static %}
+{% block content %}
+
+{% include 'inc/slider.html' %}
+
+{% if favorite %}
+<div class="trending bg-gradient py-2 pt-0 m-1" style="--bs-bg-opacity: .6;">
+  <h2 class="text-white text-lead bg-success bg-gradient p-2 "> My Favoret  </h2>
+  <div class="container-fluid" style="--bs-bg-opacity: .6; background: #2e9264d6; padding: 17px;">
+    <div class="row">
+      {% comment %} <div id="owl-demo-frontpage-last-book" class="owl-carousel"> {% endcomment %}
+      <div id="owl-demo-index-template" class="owl-carousel">
+        {% for item in favorite %}
+          {% include 'templates-parts/item.html' %}
+        {% endfor %}
+    </div>
+  </div>
+</div>
+</div>
+{% else %}
+<div class="trending bg-gradient py-2 pt-0 m-1" style="--bs-bg-opacity: .6;">
+  <h2 class="text-white text-lead bg-success bg-gradient p-2 "> My Favoret  </h2>
+  <div class="container-fluid" style="--bs-bg-opacity: .6; background: #2e9264d6; padding: 17px;">
+    <div class="row">
+        <div class="card  h-100">
+          <div class="card-body p-1"> <h5 class="card-title name-book text-center fs-6 "> <div class="alert alert-success mt-3 " role="alert">There'r no book in you library you can add some one from here <a href="/" class="alert-link mt-4 ">  Add Book </a> </div> </h5> </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+{% if carts %}
+<div class="trending bg-gradient py-2 pt-0 m-1" style="--bs-bg-opacity: .6;">
+  <h2 class=" text-lead bg-primary bg-gradient   p-2"> Card Items  </h2>
+  <div class="container-fluid" style="--bs-bg-opacity: .6; background: #5680d0ed; padding: 17px;">
+    <div class="row">
+      <div id="owl-demo-cart-in-my_store" class="owl-carousel">
+        {% for item in carts %}
+            {% include 'templates-parts/item.html' %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+
+
+{% if wiate %}
+<div class="trending bg-gradient py-2 pt-0 m-1" style="--bs-bg-opacity: .6;">
+  <h2 class=" text-lead bg-warning bg-gradient   p-2"> Waiting Abrove   </h2>
+  <div class="container-fluid" style="--bs-bg-opacity: .6; background: #5680d0ed; padding: 17px;">
+    <div class="row">
+      <div id="owl-demo-waiting-abrove-book" class="owl-carousel">
+        
+        {% for item in wiate  %}
+          {% include 'templates-parts/item.html' %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+
+{% if deleted %}
+<div class="trending bg-gradient py-2 pt-0 m-1" style="--bs-bg-opacity: .6;">
+  <h2 class=" text-lead bg-warning bg-gradient   p-2"> Waiting Abrove   </h2>
+  <div class="container-fluid" style="--bs-bg-opacity: .6; background: #5680d0ed; padding: 17px;">
+    <div class="row">
+      <div id="owl-demo-waiting-abrove-book" class="owl-carousel">
+        
+        {% for book in deleted  %}
+            {% include 'templates-parts/books.html' %}
+
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+
+
+{% if draft %}
+<div class="trending bg-gradient py-2 pt-0 m-1" style="--bs-bg-opacity: .6;">
+  <h2 class=" text-lead bg-warning bg-gradient   p-2"> Waiting Abrove   </h2>
+  <div class="container-fluid" style="--bs-bg-opacity: .6; background: #5680d0ed; padding: 17px;">
+    <div class="row">
+      <div id="owl-demo-waiting-abrove-book" class="owl-carousel">
+        
+        {% for book in draft  %}
+            {% include 'templates-parts/books.html' %}
+
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</div>
+{% endif %}
+
+
+
+{% endblock content %}
+
+{% block scripts %} {% endblock scripts %}

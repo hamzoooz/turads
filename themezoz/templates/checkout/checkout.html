@@ -1,0 +1,468 @@
+{% extends 'base.html' %} {% load static %}
+
+<title>{% block title %} Checkout {% endblock title %}</title>
+{% block style %}
+{% comment %}
+<link rel="stylesheet" href="{% static 'assets/css/squareup/card.css' %}" /> {% endcomment %}
+{% comment %}
+<link rel="stylesheet" href="{% static 'assets/css/squareup/style.css' %}" /> {% endcomment %}
+{% comment %}
+{% endcomment %}
+{% comment %} I:\hamzoooz\files\djanog\themezoz\static\assets\css\squareup\app.css {% endcomment %}
+{% comment %}
+<link rel="stylesheet" href="{% static 'assets/css/squareup/app.css' %}" /> {% endcomment %}
+{% comment %}
+<link rel="stylesheet" href="{% static 'assets/css/squareup/app.css' %}" /> {% endcomment %}
+
+{% endblock style %}
+{% block head %}
+{% comment %}
+<script type="text/javascript" src="https://sandbox.web.squarecdn.com/v1/square.js"></script> {% endcomment %}
+<script>
+  const appId = '{APPLICATION_ID}';
+  const locationId = '{LOCATION_ID}';
+
+  async function initializeCard(payments) {
+    const card = await payments.card();
+    await card.attach('#card-container');
+
+    return card;
+  }
+
+  async function createPayment(token, verificationToken) {
+    const body = JSON.stringify({
+      locationId,
+      sourceId: token,
+      verificationToken,
+      idempotencyKey: window.crypto.randomUUID(),
+    });
+
+    const paymentResponse = await fetch('/payment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body,
+    });
+
+    if (paymentResponse.ok) {
+      return paymentResponse.json();
+    }
+
+    const errorBody = await paymentResponse.text();
+    throw new Error(errorBody);
+  }
+
+  async function tokenize(paymentMethod) {
+    const tokenResult = await paymentMethod.tokenize();
+    if (tokenResult.status === 'OK') {
+      return tokenResult.token;
+    } else {
+      let errorMessage = `Tokenization failed with status: ${tokenResult.status}`;
+      if (tokenResult.errors) {
+        errorMessage += ` and errors: ${JSON.stringify(
+          tokenResult.errors,
+        )}`;
+      }
+
+      throw new Error(errorMessage);
+    }
+  }
+
+  // Required in SCA Mandated Regions: Learn more at https://developer.squareup.com/docs/sca-overview
+  async function verifyBuyer(payments, token) {
+    const verificationDetails = {
+      amount: '1.00',
+      billingContact: {
+        givenName: 'John',
+        familyName: 'Doe',
+        email: 'john.doe@square.example',
+        phone: '3214563987',
+        addressLines: ['123 Main Street', 'Apartment 1'],
+        city: 'London',
+        state: 'LND',
+        countryCode: 'GB',
+      },
+      currencyCode: 'GBP',
+      intent: 'CHARGE',
+    };
+
+    const verificationResults = await payments.verifyBuyer(
+      token,
+      verificationDetails,
+    );
+    return verificationResults.token;
+  }
+
+  // status is either SUCCESS or FAILURE;
+  function displayPaymentResults(status) {
+    const statusContainer = document.getElementById(
+      'payment-status-container',
+    );
+    if (status === 'SUCCESS') {
+      statusContainer.classList.remove('is-failure');
+      statusContainer.classList.add('is-success');
+    } else {
+      statusContainer.classList.remove('is-success');
+      statusContainer.classList.add('is-failure');
+    }
+
+    statusContainer.style.visibility = 'visible';
+  }
+
+  document.addEventListener('DOMContentLoaded', async function () {
+    if (!window.Square) {
+      throw new Error('Square.js failed to load properly');
+    }
+
+    let payments;
+    try {
+      payments = window.Square.payments(appId, locationId);
+    } catch {
+      const statusContainer = document.getElementById(
+        'payment-status-container',
+      );
+      statusContainer.className = 'missing-credentials';
+      statusContainer.style.visibility = 'visible';
+      return;
+    }
+
+    let card;
+    try {
+      card = await initializeCard(payments);
+    } catch (e) {
+      console.error('Initializing Card failed', e);
+      return;
+    }
+
+    async function handlePaymentMethodSubmission(event, card) {
+      event.preventDefault();
+
+      try {
+        // disable the submit button as we await tokenization and make a payment request.
+        cardButton.disabled = true;
+        const token = await tokenize(card);
+        const verificationToken = await verifyBuyer(payments, token);
+        const paymentResults = await createPayment(
+          token,
+          verificationToken,
+        );
+        displayPaymentResults('SUCCESS');
+
+        console.debug('Payment Success', paymentResults);
+      } catch (e) {
+        cardButton.disabled = false;
+        displayPaymentResults('FAILURE');
+        console.error(e.message);
+      }
+    }
+
+    const cardButton = document.getElementById('card-button');
+    cardButton.addEventListener('click', async function (event) {
+      await handlePaymentMethodSubmission(event, card);
+    });
+  });
+</script>
+
+{% endblock head %}
+{% block content %}
+
+<div class="container">
+  <div class="py-1 bg-secondary1 text-secondary"> <a href="/" class="text-secondary p-2"><i class="fa fa-home"></i>
+    </a><i class="fa fa-caret-right text-secondary"></i> <span class="text-secondary p-2"> checkout </span> </div>
+</div>
+
+<div class="container mt-3">
+  <form action="{% url 'create_payment' %}" method="POST">
+    {% comment %} <form action="{% url 'placeorder' %}" method="POST" id='payment-form'> {% endcomment %}
+      {% csrf_token %}
+
+      <div class="row">
+        <div class="col-md-7 mb-3">
+          <div class="card shadow">
+            <div class="card-body">
+              {% if carditems %}
+              <h6>Basic Details</h6>
+              <hr />
+              <div class="row">
+                {% comment %} Fiest NAme {% endcomment %}
+                <div class="col-md-6 mt-2">
+                  <label> First Name </label>
+                  <input type="text" value="{{ request.user.first_name }}" required="required" class="form-control"
+                    name="fname" placeholder="Enter Your First Name" />
+                </div>
+                {% comment %} last name {% endcomment %}
+                <div class="col-md-6 mt-2">
+                  <label> Last Name </label>
+                  <input type="text" value="{{ request.user.last_name }}" required="required" class="form-control"
+                    name="lname" placeholder="Enter Your Last Name" />
+                </div>
+                {% comment %} Email {% endcomment %}
+                <div class="col-md-6 mt-2">
+                  <label> Email </label>
+                  <input type="email" value="{{ request.user.email }}" required="required" class="form-control"
+                    name="email" placeholder="Enter Your Email" />
+                </div>
+
+                {% comment %} phone {% endcomment %}
+                <div class="col-md-6 mt-2">
+                  <label> Phone </label>
+                  <input type="number" value="{{ current_user.phone }}" required="required" class="form-control"
+                    name="phone" placeholder="Enter Your Phone Number " />
+                </div>
+
+                {% comment %} Address {% endcomment %}
+                <div class="col-md-12">
+                  <label> Address </label>
+                  <textarea type="t" required="required" class="form-control" name="address"
+                    placeholder="Enter Your Address "> {{ current_user.address }}  </textarea>
+                </div>
+
+                {% comment %} City {% endcomment %}
+                <div class="col-md-6 mt-2">
+                  <label> City </label>
+                  <input type="text" value="{{ current_user.city }}" required="required" class="form-control"
+                    name="city" placeholder="Enter Your City" />
+                </div>
+                {% comment %} Statue {% endcomment %}
+                <div class="col-md-6 mt-2">
+                  <label> State </label>
+                  <input type="text" value="{{ current_user.state }}" required="required" class="form-control"
+                    name="state" placeholder="Enter Your Status " />
+                </div>
+
+                {% comment %} Country {% endcomment %}
+                <div class="col-md-6 mt-2">
+                  <label> Country </label>
+                  <input type="text" value="{{ current_user.country }}" required="required" class="form-control"
+                    name="country" placeholder="Enter Your Country" />
+                </div>
+
+                {% comment %} Pine Code {% endcomment %}
+                <div class="col-md-6 mt-2">
+                  <label> Pin Code </label>
+                  <input type="text" value="{{ current_user.pincode }}" required="required" class="form-control"
+                    name="pincode" placeholder="Enter Your Pin Code  " />
+                </div>
+              </div>
+              <!--  ./row-->
+            </div>
+            <!--  ./Cart-body -->
+          </div>
+          <!--  ./cart-->
+        </div>
+        <!--  ./col-md-7 -->
+
+        <div class="col-md-5">
+          <div class="card shadow">
+            <div class="card-body">
+              <h4>Order Summary</h4>
+              <table class="table table-striptags table-bordereds">
+                <thead>
+                  <tr>
+                    <th>Cover</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {% for item in carditems %}
+                  <tr>
+                    <th>
+                      <a href="#">  <img src=" {% if item.item.theme_image %} {{ item.item.theme_image.url }} {% endif %} " calss="me-4  thumbnail  " width="50px"   height="50px" />   </a>
+                    </th>
+                    <th><a href="#"> {{item.item.title}} </a></th>
+                    <th>{{ item.item.selling_price | stringformat:'d' }}</th>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+
+              <h6 class="fw-bold"> Grand Total <span class="float-end fw-bold mr-4"> US {{ total_price|stringformat:'d'  }} </span> </h6>
+
+              <div class="pay-with text-center">
+
+                <button class="btn text-lead shadow w-100 " style='border:1px gray solid; background-repeat: no-repeat; background-position: center; background-size: content; height:50px; background-image:url("{% static 'assets/svg/icons/paypal-svgrepo-com.svg' %}")' type="submit"> </button>
+                <!-- <span class="text-center  " style="line-height: 42px;">   ------------ OR ----------   </span> -->
+
+
+              </div>
+
+            </div>
+
+            <!-- <form id="payment-form">
+              <div id="card-container"></div>
+              <button id="card-button" type="button">Pay $ {{ total_price|stringformat:'d' }}</button>
+            </form>
+            <div id="payment-status-container"></div> -->
+
+            {% else %}
+            <h4>Your Card Is Empt !</h4>
+            {% endif %} {% comment %}
+            <hr />
+            {% endcomment %}
+          </div>
+          {% comment %} .card-body {% endcomment %}
+        </div>
+        {% comment %} .card {% endcomment %}
+      </div>
+      {% comment %} .col-md-5 {% endcomment %}
+</div>
+{% comment %} .row {% endcomment %}
+</form>
+</div>
+
+
+{% endblock content %}
+
+{% block scripts %}
+<script>
+  const appId = '{APPLICATION_ID}';
+  const locationId = '{LOCATION_ID}';
+
+  async function initializeCard(payments) {
+    const card = await payments.card();
+    await card.attach('#card-container');
+
+    return card;
+  }
+
+  async function createPayment(token, verificationToken) {
+    const body = JSON.stringify({
+      locationId,
+      sourceId: token,
+      verificationToken,
+      idempotencyKey: window.crypto.randomUUID(),
+    });
+
+    const paymentResponse = await fetch('/payment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body,
+    });
+
+    if (paymentResponse.ok) {
+      return paymentResponse.json();
+    }
+
+    const errorBody = await paymentResponse.text();
+    throw new Error(errorBody);
+  }
+
+  async function tokenize(paymentMethod) {
+    const tokenResult = await paymentMethod.tokenize();
+    if (tokenResult.status === 'OK') {
+      return tokenResult.token;
+    } else {
+      let errorMessage = `Tokenization failed with status: ${tokenResult.status}`;
+      if (tokenResult.errors) {
+        errorMessage += ` and errors: ${JSON.stringify(
+          tokenResult.errors,
+        )}`;
+      }
+
+      throw new Error(errorMessage);
+    }
+  }
+
+  // Required in SCA Mandated Regions: Learn more at https://developer.squareup.com/docs/sca-overview
+  async function verifyBuyer(payments, token) {
+    const verificationDetails = {
+      amount: '1.00',
+      billingContact: {
+        givenName: 'John',
+        familyName: 'Doe',
+        email: 'john.doe@square.example',
+        phone: '3214563987',
+        addressLines: ['123 Main Street', 'Apartment 1'],
+        city: 'London',
+        state: 'LND',
+        countryCode: 'GB',
+      },
+      currencyCode: 'GBP',
+      intent: 'CHARGE',
+    };
+
+    const verificationResults = await payments.verifyBuyer(
+      token,
+      verificationDetails,
+    );
+    return verificationResults.token;
+  }
+
+  // status is either SUCCESS or FAILURE;
+  function displayPaymentResults(status) {
+    const statusContainer = document.getElementById(
+      'payment-status-container',
+    );
+    if (status === 'SUCCESS') {
+      statusContainer.classList.remove('is-failure');
+      statusContainer.classList.add('is-success');
+    } else {
+      statusContainer.classList.remove('is-success');
+      statusContainer.classList.add('is-failure');
+    }
+
+    statusContainer.style.visibility = 'visible';
+  }
+
+  document.addEventListener('DOMContentLoaded', async function () {
+    if (!window.Square) {
+      throw new Error('Square.js failed to load properly');
+    }
+
+    let payments;
+    try {
+      payments = window.Square.payments(appId, locationId);
+    } catch {
+      const statusContainer = document.getElementById(
+        'payment-status-container',
+      );
+      statusContainer.className = 'missing-credentials';
+      statusContainer.style.visibility = 'visible';
+      return;
+    }
+
+    let card;
+    try {
+      card = await initializeCard(payments);
+    } catch (e) {
+      console.error('Initializing Card failed', e);
+      return;
+    }
+
+    async function handlePaymentMethodSubmission(event, card) {
+      event.preventDefault();
+
+      try {
+        // disable the submit button as we await tokenization and make a payment request.
+        cardButton.disabled = true;
+        const token = await tokenize(card);
+        const verificationToken = await verifyBuyer(payments, token);
+        const paymentResults = await createPayment(
+          token,
+          verificationToken,
+        );
+        displayPaymentResults('SUCCESS');
+
+        console.debug('Payment Success', paymentResults);
+      } catch (e) {
+        cardButton.disabled = false;
+        displayPaymentResults('FAILURE');
+        console.error(e.message);
+      }
+    }
+
+    const cardButton = document.getElementById('card-button');
+    cardButton.addEventListener('click', async function (event) {
+      await handlePaymentMethodSubmission(event, card);
+    });
+  });
+</script>
+
+
+{% endblock scripts %}

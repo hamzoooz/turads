@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<title> {% block title %} {{ title }} {% endblock title %} </title>
+{% block content %}
+<div class=" container  trending bg-gradient py-2 " style="--bs-bg-opacity: .6;">
+    <div class="row py-5">
+    <h2 class="text-white text-lead bg-success bg-gradient1 p-3 "> {{ title }}  </h2>
+        <div class="card  h-100 shadow  ">
+            <form action="{% url 'add_item' %}"method="POST" enctype="multipart/form-data" class="p-4">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success" > <i class="fa fa-plus"></i> Add Item </button>
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+
+name
+file
+sample
+category
+item_image
+number_pages
+language
+short_link
+isnn
+edition
+published_house
+small_descrption
+descrption
+original_price
+selling_price
+type_of_item
+size
+tags
+meta_tilte
+meta_keyword
+meta_description
+
+
+
+file = request.POST.get['file']
+sample = request.POST.get['sample']
+category = request.POST.get['category']
+item_image = request.POST.get['item_image']
+number_pages = request.POST.get['number_pages']
+language = request.POST.get['language']
+short_link = request.POST.get['short_link']
+isnn = request.POST.get['isnn']
+edition = request.POST.get['edition']
+published_house = request.POST.get['published_house']
+small_descrption = request.POST.get['small_descrption']
+descrption = request.POST.get['descrption']
+original_price = request.POST.get['original_price']
+selling_price = request.POST.get['selling_price']
+type_of_item = request.POST.get['type_of_item']
+size = request.POST.get['size']
+tags = request.POST.get['tags']
+meta_tilte = request.POST.get['meta_tilte']
+meta_keyword = request.POST.get['meta_keyword']
+meta_description = request.POST.get['meta_description']
+title = request.POST.get['name']
+title = request.POST.get['name']
+title = request.POST.get['name']
+title = request.POST.get['name']
+
+
+
+
+-->

@@ -1,0 +1,127 @@
+{% load static %}
+{% load socialaccount %} 
+{% comment %} {% providers_media_js %} {% endcomment %}
+
+<div class="container ">
+<div class="row">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light " >
+        <a  href="/"  class="col-5 col-md-4" style="background:url('{% static 'assets/images/logo.png' %}'); display: block;background-size: contain; background-position:center;  height:100%; background-repeat:no-repeat;" class="navbar-brand" href="{% url  'index' %}"  > </a>
+      <div class="col-5 col-md-5 float-right" >
+        <div class="search-btn search-bar   "   >
+          <form action="/search" method="get" >
+            {% csrf_token %}
+            <div class="input-group">
+              <input type="search" requerd name="productsearch" class="form-control" id='searchproduct' placeholder="Search Here ... " aria-label="Username" aria-describedby="basic-addon1">
+              <button type="submit" class="input-group-text" id="basic-addon1">
+                {% comment %} <i class="fa fa-search"></i> {% endcomment %}
+                <svg width="15" height="15" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="#555555" d="M1216 832q0-185-131.5-316.5t-316.5-131.5-316.5 131.5-131.5 316.5 131.5 316.5 316.5 131.5 316.5-131.5 131.5-316.5zm512 832q0 52-38 90t-90 38q-54 0-90-38l-343-342q-179 124-399 124-143 0-273.5-55.5t-225-150-150-225-55.5-273.5 55.5-273.5 150-225 225-150 273.5-55.5 273.5 55.5 225 150 150 225 55.5 273.5q0 220-124 399l343 343q37 37 37 90z"/>
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- user -->
+      <div class="col-2 col-md-3   ">
+        <span class="nav-item dropdown " style="padding-right: 10px; float: right;">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <?xml version="1.0" encoding="iso-8859-1"?> 
+          <svg height="30px" width="30px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 412.256 412.256" xml:space="preserve"> <g> <g>
+              <path style="fill:none;" d="M150.395,280.896c30.959,0,56.146-31.062,56.146-69.244c0-38.18-25.188-69.242-56.146-69.242 S94.25,173.472,94.25,211.651C94.25,249.833,119.438,280.896,150.395,280.896z"/>
+              <path style="fill:#73D0F4;" d="M241.34,331.284c-24.133-17.017-56.432-26.389-90.945-26.389c-34.512,0-66.811,9.371-90.945,26.389 c-18.67,13.164-30.488,29.596-34.195,47.193H70.25v-21.432c0-6.627,5.373-12,12-12c6.627,0,12,5.373,12,12v21.432h112.291v-21.432 c0-6.627,5.373-12,12-12c6.627,0,12,5.373,12,12v21.432h44.994C271.83,360.88,260.01,344.448,241.34,331.284z"/>
+              <path style="fill:#3D6889;" d="M255.17,311.669c-16.381-11.551-35.838-20.074-57.012-25.188 c19.639-17.01,32.383-44.221,32.383-74.83c0-51.414-35.953-93.242-80.146-93.242c-44.191,0-80.145,41.828-80.145,93.242 c0,30.609,12.744,57.82,32.383,74.83c-21.174,5.113-40.631,13.637-57.014,25.188C16.201,332.411,0,360.399,0,390.478 c0,6.627,5.373,12,12,12h276.791c6.627,0,12-5.373,12-12C300.791,360.399,284.59,332.411,255.17,311.669z M94.25,211.651 c0-38.18,25.186-69.242,56.145-69.242s56.146,31.063,56.146,69.242c0,38.182-25.188,69.244-56.146,69.244  C119.438,280.896,94.25,249.833,94.25,211.651z M230.541,378.478v-21.432c0-6.627-5.373-12-12-12c-6.627,0-12,5.373-12,12v21.432 H94.25v-21.432c0-6.627-5.373-12-12-12c-6.627,0-12,5.373-12,12v21.432H25.254c3.707-17.598,15.525-34.029,34.195-47.193 c24.135-17.017,56.434-26.389,90.945-26.389c34.514,0,66.813,9.371,90.945,26.389c18.67,13.164,30.49,29.596,34.195,47.193 	H230.541z"/>
+              <path style="fill:#3D6889;" d="M267.58,33.778h132.676c6.627,0,12-5.373,12-12c0-6.627-5.373-12-12-12H267.58 c-6.627,0-12,5.373-12,12C255.58,28.405,260.953,33.778,267.58,33.778z"/>
+              <path style="fill:#3D6889;" d="M400.256,83.333H267.58c-6.627,0-12,5.373-12,12c0,6.629,5.373,12,12,12h132.676 c6.627,0,12-5.371,12-12C412.256,88.706,406.883,83.333,400.256,83.333z"/>
+              <path style="fill:#3D6889;" d="M400.256,156.89H267.58c-6.627,0-12,5.373-12,12c0,6.627,5.373,12,12,12h132.676 c6.627,0,12-5.373,12-12C412.256,162.263,406.883,156.89,400.256,156.89z"/> </g> </g>
+          </svg>
+          </a>
+          <ul class="dropdown-menu" style="left: -135px; padding: 10px;margin-top: 15px;" >
+            <li><a class="dropdown-item" href="{% url 'my_store' %}"> <i class=" fa fa-store "></i> my store  </a></li>
+            {% comment %} <li><a class="dropdown-item" href="#"> <i class=" fa fa-cog fa-fw "></i> Settings </a></li> {% endcomment %}
+            <li><a class="dropdown-item" href="{% url 'collections' %}"><i class="fa fa-tags"></i> Collections</a></li>
+            
+            <li><a class="dropdown-item" href="{%   url 'my_order' %}"><i class=" fa fa-archive "></i> My Order </a></li>
+            <li><a class="dropdown-item" href="{% url 'cart_view' %}"> <i class="fa fa-shopping-cart"></i> view card  </a></li>
+            <li><a class="dropdown-item" href="{% url 'checkout' %}"> <i class="fa fa-shopping-cart"></i> Checkout  </a></li>
+            
+            <li><hr class="dropdown-divider"></li>            
+            {% if request.user.is_authenticated %}
+              <li class="nav-item dropdown-item"> <a class="nav-link {% if request.resolver_match.url_name == 'custom_account_logout' %}active {% endif %}" aria-current="page" href="{% url 'custom_account_logout' %}"> <i class="fa fa-power-off"></i> Logout </a> </li>
+            {% else %}
+              <li class="nav-item dropdown-item "><a class="nav-link  {% if request.resolver_match.url_name == 'login'  %}active {% endif %} " aria-current="page"  href="{% url 'account_login' %}"> <i class="fa fa-sign-in-alt"></i> Login</a></li>
+              <li class="nav-item dropdown-item "><a class="nav-link  {% if request.resolver_match.url_name == 'signup'  %}active {% endif %} " aria-current="page"  href="{% url 'account_signup' %}"> <i class="fa fa-sign-out-alt"></i> Registr</a></li>
+            {% endif %}
+          </ul>
+        </span>
+      </div>
+      
+    </nav>
+  </div>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-top:1px solid #cfcfcf; padding-top: 6px;" >
+    <div class="container d-flex justify-content-between  ">
+
+      
+      <div id="owl-demo-nav" class="owl-carousel lazyload ">
+      {% for item in categories %}
+        <li class="nav-item dropdown ">
+            <a class="nav-link dropdown-toggle" href="{% url 'category'  item.slug   item.id %}" >    {{ item.name }}  </a>
+              <ul class="dropdown-menu" style="z-index: -99991;" >
+                <li><a class="dropdown-item" href="#"> Add Item </a></li>
+                <li><a class="dropdown-item" href="#"> Add Category</a></li>
+                <li><a class="dropdown-item" href="#">  Add Card</a></li>
+              </ul>
+
+          </li>
+          
+          {% endfor %}
+        </div>
+        
+
+    </div>
+  </nav>
+
+
+  {% comment %} <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-top:1px solid #cfcfcf; padding-top: 6px;" >
+    <div class="container d-flex justify-content-between  ">
+
+      {% if request.user.is_authenticated %}
+        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'categories'  %}active {% endif %} " aria-current="page" href="{% url 'collections' %}"> <i class="fa fa-list-ul"></i> Collections </a></li>
+        {% if request.user.is_staff %}
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {% if request.user.is_staff %}  <i class=" fa fa-upload"></i> {% endif %}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#"> Add Item </a></li>
+            <li><a class="dropdown-item" href="#"> Add Category</a></li>
+            <li><a class="dropdown-item" href="#">  Add Card</a></li>
+
+            {% if not request.user.is_authenticated %}
+            <li><hr class="dropdown-divider"></li>
+
+
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'account_login' %}">Login</a></li>
+            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'account_signup' %}">Registr</a></li>
+            {% endif %}
+          </ul>
+      </li>
+
+      {% endif %}
+      <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'cart_view'  %}active {% endif %} " aria-current="page" href="{% url 'cart_view' %}"><i class=" fa fa-shopping-cart"></i> </a></li>
+      <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'wishlist'  %}active {% endif %} " aria-current="page" href="{% url 'my_store' %}"> <i class="fa fa-heart"></i> </a></li>
+      
+      {% else %}
+      <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'wishlist'  %}active {% endif %} " aria-current="page" href="{% url 'my_store' %}"> <i class="fa fa-heart"></i> </a></li>
+      <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'all_messages'  %}active {% endif %} " aria-current="page"  href="#"> <button type="button" class="btn btn-secondary"> <i class="fa fa-bell"></i> </button></a> </li>
+      <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'login'  %}active {% endif %} " aria-current="page"  href="{% url 'account_login' %}"> <i class="fa fa-sign-in-alt"></i> Login</a></li>
+      <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'signup'  %}active {% endif %} " aria-current="page"  href="{% url 'account_signup' %}"> <i class="fa fa-door-open"> </i> Registr</a></li>
+        
+      {% endif %}
+    </div>
+  </nav>
+ {% endcomment %}
+

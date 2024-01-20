@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% if books.name %}
+    <title> {% block title %} All Pages   {% endblock title %} </title>
+{% endif %}
+{% block content %}
+
+<div class="container d-flex  ">
+  <div class="py-1 bg-secondary1  d-flex align-items-center ">
+    <a href="/" class="text-secondary  p-2 "><i class="fa fa-home"></i> </a><i class="fa fa-caret-right text-secondary  "></i>
+    <a href="{% url 'collections' %}" class="text-secondary  p-2">Collections  </a> <i class="fa fa-caret-right text-secondary  "></i>
+    <span class="text-secondary  p-2 "> Pages   </span>
+  </div>
+</div>
+
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+
+                <div class="col-6 col-md-4 col-lg-3 ">
+                    <div class="card-body mt-3">
+                        <div class="card">
+                            <a href="{% url 'editors_choice' %}">
+                                <div class="coner card-img-top lazyOwl  rounded img-thumbnail  mx-auto d-block " style="background-image: url('') ; width: 15rem; height: 150px; background-position: center ; background-size: contain; background-repeat: no-repeat; "> </div>
+                                    <div class="card-body p-1"> <h5 class="card-title name-book text-center fs-6 "> Editors Choice </h5> </a>
+                                </div>
+                            </a>
+                        </div><!-- card  -->
+                    </div><!-- card -body -->
+                </div><!--col-6 col-md-4 -->
+ 
+                <div class="col-6 col-md-4 col-lg-3 ">
+                    <div class="card-body mt-3">
+                        <div class="card">
+                            <a href="{% url 'trend_item' %}">
+                                <div class="coner card-img-top lazyOwl  rounded img-thumbnail  mx-auto d-block " style="background-image: url('') ; width: 15rem; height: 150px; background-position: center ; background-size: contain; background-repeat: no-repeat; "> </div>
+                                    <div class="card-body p-1"> <h5 class="card-title name-book text-center fs-6 "> Trending Item </h5> </a>
+                                </div>
+                            </a>
+                        </div><!-- card  -->
+                    </div><!-- card -body -->
+                </div><!--col-6 col-md-4 -->
+ 
+
+                <div class="col-6 col-md-4 col-lg-3 ">
+                    <div class="card-body mt-3">
+                        <div class="card">
+                            <a href="{% url 'recent_items' %}">
+                                <div class="coner card-img-top lazyOwl  rounded img-thumbnail  mx-auto d-block " style="background-image: url('') ; width: 15rem; height: 150px; background-position: center ; background-size: contain; background-repeat: no-repeat; "> </div>
+                                    <div class="card-body p-1"> <h5 class="card-title name-book text-center fs-6 "> Recent Items added  </h5> </a>
+                                </div>
+                            </a>
+                        </div><!-- card  -->
+                    </div><!-- card -body -->
+                </div><!--col-6 col-md-4 -->
+ 
+
+                <div class="col-6 col-md-4 col-lg-3 ">
+                    <div class="card-body mt-3">
+                        <div class="card">
+                            <a href="{% url 'random_items' %}">
+                                <div class="coner card-img-top lazyOwl  rounded img-thumbnail  mx-auto d-block " style="background-image: url('') ; width: 15rem; height: 150px; background-position: center ; background-size: contain; background-repeat: no-repeat; "> </div>
+                                    <div class="card-body p-1"> <h5 class="card-title name-book text-center fs-6 "> Random Items  </h5> </a>
+                                </div>
+                            </a>
+                        </div><!-- card  -->
+                    </div><!-- card -body -->
+                </div><!--col-6 col-md-4 -->
+ 
+        </div><!-- .row -->
+    </div><!-- .container -->
+</div><!-- ./py-5  -->
+
+{% endblock content %}
+

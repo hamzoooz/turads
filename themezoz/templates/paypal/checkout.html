@@ -1,0 +1,200 @@
+{% extends 'base.html' %} {% load static %}
+
+<title>{% block title %} Checkout {% endblock title %}</title>
+
+{% block content %}
+
+<div class="container">
+    <div class="py-1 bg-secondary1 text-secondary">
+        <a href="/" class="text-secondary p-2"><i class="fa fa-home"></i> </a><i
+            class="fa fa-caret-right text-secondary"></i>
+        <span class="text-secondary p-2"> checkout </span>
+    </div>
+</div>
+
+<div class="container mt-3">
+    <form action="{% url 'create_payment' %}" method="POST">
+    <!-- <form action="{% url 'placeorder' %}" method="POST"> -->
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col-md-7 mb-3">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h6>Basic Details</h6>
+                        <hr />
+                        <div class="row">
+                            {% comment %} Fiest NAme {% endcomment %}
+                            <div class="col-md-6 mt-2">
+                                <label> First Name </label>
+                                <input type="text" value="{{ request.user.first_name }}" required="required"
+                                    class="form-control" name="fname" placeholder="Enter Your First Name" />
+                            </div>
+                            {% comment %} last name {% endcomment %}
+                            <div class="col-md-6 mt-2">
+                                <label> Last Name </label>
+                                <input type="text" value="{{ request.user.last_name }}" required="required"
+                                    class="form-control" name="lname" placeholder="Enter Your Last Name" />
+                            </div>
+                            {% comment %} Email {% endcomment %}
+                            <div class="col-md-6 mt-2">
+                                <label> Email </label>
+                                <input type="email" value="{{ request.user.email }}" required="required"
+                                    class="form-control" name="email" placeholder="Enter Your Email" />
+                            </div>
+
+                            {% comment %} phone {% endcomment %}
+                            <div class="col-md-6 mt-2">
+                                <label> Phone </label>
+                                <input type="number" value="{{ current_user.phone }}" required="required"
+                                    class="form-control" name="phone" placeholder="Enter Your Phone Number " />
+                            </div>
+
+                            {% comment %} Address {% endcomment %}
+                            <div class="col-md-12">
+                                <label> Address </label>
+                                <textarea type="t" required="required" class="form-control" name="address"
+                                    placeholder="Enter Your Address "> {{ current_user.address }}  </textarea>
+                            </div>
+
+                            {% comment %} City {% endcomment %}
+                            <div class="col-md-6 mt-2">
+                                <label> City </label>
+                                <input type="text" value="{{ current_user.city }}" required="required"
+                                    class="form-control" name="city" placeholder="Enter Your City" />
+                            </div>
+                            {% comment %} Statue {% endcomment %}
+                            <div class="col-md-6 mt-2">
+                                <label> State </label>
+                                <input type="text" value="{{ current_user.state }}" required="required"
+                                    class="form-control" name="state" placeholder="Enter Your Status " />
+                            </div>
+
+                            {% comment %} Country {% endcomment %}
+                            <div class="col-md-6 mt-2">
+                                <label> Country </label>
+                                <input type="text" value="{{ current_user.country }}" required="required"
+                                    class="form-control" name="country" placeholder="Enter Your Country" />
+                            </div>
+
+                            {% comment %} Pine Code {% endcomment %}
+                            <div class="col-md-6 mt-2">
+                                <label> Pin Code </label>
+                                <input type="text" value="{{ current_user.pincode }}" required="required"
+                                    class="form-control" name="pincode" placeholder="Enter Your Pin Code  " />
+                            </div>
+                        </div>
+                        <!--  ./row-->
+                    </div>
+                    <!--  ./Cart-body -->
+                </div>
+                <!--  ./cart-->
+            </div>
+            <!--  ./col-md-7 -->
+
+            <div class="col-md-5">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h4>Order Summary</h4>
+                        {% if carditem %}
+                        <table class="table table-striptags table-bordereds">
+                            <thead>
+                                <tr>
+                                    <th>Cover</th>
+                                    <th>Name</th>
+                                    {% comment %}
+                                    <th>Qty</th>
+                                    {% endcomment %}
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for item in carditem %}
+                                <tr>
+                                    <th>
+                                        <a href="#">
+                                            <img src="{{ item.item.theme_image.url }}" calss="me-4  thumbnail  "
+                                                width="50px" height="50px" />
+                                        </a>
+                                    </th>
+                                    <th><a href="#"> {{item.item.title}} </a></th>
+                                    <th>{{item.item.selling_price | stringformat:'d' }}</th>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <h6 class="fw-bold">
+                            Grand Total
+                            <span class="float-end fw-bold mr-4">
+                                US {{ total_price | stringformat:'d' }}
+                            </span>
+                        </h6>
+
+                        <input type="hidden" name="payment_mode" value="COD" class="payment-mode" />
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-success w-100">   COD | Place Order  </button>
+                            {% comment %} <button type="button" class="btn btn-primary paywithrozpay mt-2 w-100">   Pay With Razorpay      </button>     {% endcomment %}
+
+                            <button type="submit" class="mt-2 btn btn-success w-100" >pay with paypal</button>
+                            <p id="result-message"></p>
+                        </div>
+                        {% else %}
+                        <h4>Your Card Is Empty !</h4>
+                        {% endif %} {% comment %}
+                        <hr />
+                        {% endcomment %}
+                    </div>
+                    {% comment %} .card-body {% endcomment %}
+                </div>
+                {% comment %} .card {% endcomment %}
+            </div>
+            {% comment %} .col-md-5 {% endcomment %}
+        </div>
+        {% comment %} .row {% endcomment %}
+    </form>
+</div>
+
+{% endblock content %} 
+
+{% comment %} for sandbox test {% endcomment %} 
+{% comment %} AdaZiYkHJwzxlzKJ2D1ZzzDXWIWlwtXopPLxySUxvoCfzBqDBfrh8kkZ20jNQyQuAu3D9yntGIaTBhg {% endcomment %} 
+{% comment %} for live product {% endcomment %} {% comment %} AcDgEmyTO3_azNN4fn42z5yAhiqnX7wEHhIZs8-CMGjGTSGvCTWY1Aa0zUuqGi0sILEZDb3fbbg4twVv {% endcomment %}
+
+{% block scripts %} 
+
+<!-- <script src="{% static 'assets/js/checkout.js' %}"></script> -->
+<script  src="https://www.paypal.com/sdk/js?client-id=ARZ_CBKui5x0KurZlgovXcdSTQfbk_8FEEMQ5Q5eXlwkekSkmk1o3QHb-JROPSYD_rmvGvsP5BE-LClb&components=buttons&enable-funding=paylater,venmo,card" data-sdk-integration-source="integrationbuilder_sc"></script>
+
+<!-- <script>
+
+    window.paypal.Buttons({
+            style: {
+                shape: "rect",
+                layout: "vertical",
+            },
+
+            createOrder: function(data, action) {
+                return action.order.create({
+
+                        putchase_unite: [{
+                            amount: {
+                                value: '{{ total_price | stringformat:"d" }}'
+                            }
+                        }]
+                    });
+        },
+        
+        onAprove: function(data, action) {
+            return action.order.captures().then(function(orderData){
+            console.log("Capture result" , orderData, JSON.stringify(orderData, null, 2 ) );
+            var transaction = orderData.purchase_units[0].payments.captures[0];
+            alert("Transaction " + transaction.status + ':' + transaction.id +  "\n\mSee connole for all avaliblae details " );
+        });
+        }
+    }).render("#paypal-button-container")
+    
+</script> -->
+
+
+{% endblock scripts %}

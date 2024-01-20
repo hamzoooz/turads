@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<title> {% block title %}random Items  {% endblock title %} </title>
+<meta name="description" content=" {% block description %} Embrace serendipity on our Random Items page. Explore an eclectic mix of free templates, themes, dashboards, and premium items – a delightful surprise with each visit. Download unique and inspiring resources to infuse spontaneity into your projects. Unlock creativity in unexpected places and elevate your digital experience with our diverse collection of randomly featured, high-quality design elements. Explore the unknown and transform your creations today. {% endblock %} themezoz.com #themezoz themes free themes free templates #wordpress #templates "> 
+
+{% block content %}
+  
+<h1 class="container text-center "> Random items </h1>
+<div class="container d-flex  ">
+  <div class="py-1 bg-secondary1  d-flex align-items-center ">
+    <a href="/" class="text-secondary  p-2 "><i class="fa fa-home"></i> </a><i class="fa fa-caret-right text-secondary  "></i>
+    <a href="{% url 'collections' %}" class="text-secondary  p-2">Collections  </a> <i class="fa fa-caret-right text-secondary  "></i>
+    <span class="text-secondary  p-2 "> random items  </span>
+  </div>
+</div>
+
+ 
+
+{% if items_list %} 
+<div class="container">
+  <div class="row">
+    {% for item in items_list %}
+    <div class="col-6 col-md-4 col-lg-3 " style="padding: 2px;" >
+            <div class="parent" >
+              {% include 'templates-parts/item.html' %}
+            </div>
+          </div><!--col-6 col-md-4 -->
+          {% endfor %}
+    </div><!-- .row -->
+
+{% include "inc/pagination.html" %}
+
+  {% comment %} <div class="pagination">
+      <span class="step-links">
+          {% if items_list.has_previous %}
+              <a href="?page=1">&laquo; first</a>
+              <a href="?page={{items_list.previous_page_number }}">previous</a>
+          {% endif %}
+
+          <span class="current-page">
+              Page {{ items_list.number }} of {{ items_list.paginator.num_pages }}.
+          </span>
+
+          {% if items_list.has_next %}
+              <a href="?page={{items_list.next_page_number }}">next</a>
+              <a href="?page={{items_list.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+      </span>
+  </div> {% endcomment %}
+
+  
+</div><!-- .container -->
+
+
+
+{% else %}
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+                <div class="col-12  ">
+                    <div class="card-body mt-3">
+                        <div class="card alert  ">
+                             <div class="card-body p-1"> <h5 class="card-title name-book text-center fs-6 "> no content ^_^ you can add some themes or template from here </h5> </a>
+                        </div><!-- card  -->
+                    </div><!-- card -body -->
+                </div><!--col-6 col-md-4 -->
+        </div><!-- .row -->
+    </div><!-- .container -->
+</div><!-- ./py-5  -->
+{% endif %}
+
+
+
+{% endblock content %}
+
+  

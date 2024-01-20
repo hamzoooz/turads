@@ -1,0 +1,67 @@
+<div class="container shadow text-center "  style="background-color: #f8f9fa;padding: 24px 7px;border-radius: 5px;">
+<footer class="footer  my-2 "   >    
+    <div class="row">
+        <div class="col-md-6 col-lg-3 ">
+            <form action="/search" method="get" class="pt-2" >
+                {% csrf_token %}
+                <div class="input-group">
+                <input type="email" requerd name="productsearch" class="form-control" id='' placeholder="Subscribe in our news" aria-label="Username" aria-describedby="basic-addon1">
+                <button type="submit" class="input-group-text" id="basic-addon1"><i class="fa fa-paper-plane "></i></button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6 col-lg-3 ">
+
+        <div class="link-footer pt-2  d-flex justify-content-around ">
+                {% if request.user.is_authenticated %}
+                    <a class="dropdown-item-1" href="{% url 'my_store' %}"> <i class=" fa fa-store "></i>  </a>
+                    <a class="dropdown-item-1" href="{% url 'cart_view' %}"> <i class="fa fa-shopping-cart"></i>   </a>
+                    {% comment %} <a class="dropdown-item-1" href="#"> <i class=" fa fa-cog fa-fw "></i>   </a> {% endcomment %}
+                    {% comment %} <a class="dropdown-item-1" href="#"> <i class=" fa fa-plus "></i> Add  </a> {% endcomment %}
+                {% else %}
+                    <a class="nav-link  {% if request.resolver_match.url_name == 'login'  %}active {% endif %} " aria-current="page" href="{% url 'account_login' %}"> <i class="fa fa-sign-in-alt"></i> Login</a>
+                    <a class="nav-link  {% if request.resolver_match.url_name == 'signup'  %}active {% endif %} " aria-current="page" href="{% url 'account_signup' %}"> <i class="fa fa-sign-out-alt"></i> Registr</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 ">
+            <div class="link-footer pt-2  d-flex justify-content-around ">
+                {% comment %} <a class="dropdown-item-1" href="#">About Us </a> {% endcomment %}
+                <a class="dropdown-item-1" href="{% url 'contact_us' %}">Contact Us </a>
+                <a class="dropdown-item-1" href="{% url 'terms' %}">Terms </a>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3 ">
+            <div class="link-footer pt-2  d-flex justify-content-around ">
+                <a class="dropdown-item-1" href="{% url  'blog:home' %}"> Blog </a>
+                {% comment %} <a class="dropdown-item-1" href="#">API </a> {% endcomment %}
+                {% comment %} <a class="dropdown-item-1" href="#">Community </a> {% endcomment %}
+                <a class="dropdown-item-1" href="{% url 'privacy' %}">Privacy </a>
+            </div>
+        </div>
+    </div>
+</footer>
+<hr>
+<div class="row">
+    <div class="col-md-6">
+        <span class="copy-riaght pt-2 " style="font-size: 15;">All Right Reserve to hamzoooz &copy; {{ date }}</span> 
+    </div>
+    <div class="col-md-6 pt-2">
+        <span class="p-1 fs-6 " ><a href="https://www.buymeacoffee.com/themezoz"><i class="fa fa-donate "></i> </a></span>
+        {% comment %} <span class="p-1 fs-6 " ><a href="{{ profile.contat_twitter }}"><i class=" fa fa-rss"></i>  </a></span> {% endcomment %}
+        <span class="p-1 fs-6 " ><a href="https://t.me/themezoz"><i class="fab fa-telegram "></i> </a></span>
+        <span class="p-1 fs-6 " ><a href="https://www.facebook.com/61553151351024"><i class="fab fa-facebook "></i> </a></span>
+        <span class="p-1 fs-6 " ><a href="https://www.twitter.com/themezoz"><i class=" fab fa-twitter"></i>  </a></span>
+        <span class="p-1 fs-6 " ><a href="https://whatsapp.com/channel/0029VaCdpMpEVccDdTj1J80O"><i class=" fab fa-whatsapp"></i>  </a></span>
+        <span class="p-1 fs-6 " ><a href="https://github.com/themezoz"><i class="fab fa-github "></i> </a></span>
+        {% comment %} <span class="p-1 fs-6 " ><a href="{{ profile.web_site }}"><i class="fa fa-earth "></i> </a></span> {% endcomment %}
+        <span class="p-1 fs-6 " ><a href="https://www.youtube.com/@Theme-zoz"><i class=" fab fa-youtube"></i>  </a></span>
+        {% comment %} <span class="p-1 fs-6 " ><a href="{{ profile.web_site }}"><i class="fab fa-snapchat "></i> </a></span> {% endcomment %}
+        {% comment %} <span class="p-1 fs-6 " ><a href="{{ profile.web_site }}"><i class="fab fa-tiktok "></i> </a></span> {% endcomment %}
+        <span class="p-1 fs-6 " ><a href="https://www.linkedin.com/company/themezoz"><i class="fab fa-linkedin "></i> </a></span>
+        <span class="p-1 fs-6 " ><a href="https://www.instagram.com/themezoz"><i class="fab fa-instagram "></i> </a></span>
+    </div>
+    </div>  
+</div>

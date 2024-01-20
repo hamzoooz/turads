@@ -1,0 +1,29 @@
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-top:1px solid #cfcfcf; padding-top: 6px;" >
+    <div class="container d-flex justify-content-between  ">
+
+        <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'categories'  %}active {% endif %} " aria-current="page" href="{% url 'collections' %}"> <i class="fa fa-list-ul"></i> all Collections </a></li>
+
+ 
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             one 
+          </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#"> Add Item </a></li>
+              <li><a class="dropdown-item" href="#"> Add Category</a></li>
+              <li><a class="dropdown-item" href="#">  Add Card</a></li>
+            </ul>
+        </li>
+        <li class="nav-item dropdown ">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+             tow  
+          </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#"> Add Item </a></li>
+              <li><a class="dropdown-item" href="#"> Add Category</a></li>
+              <li><a class="dropdown-item" href="#">  Add Card</a></li>
+            </ul>
+        </li>
+ 
+    </div>
+  </nav>

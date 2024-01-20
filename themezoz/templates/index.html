@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<title> {% block title %} Home  {% endblock title %} </title>
+<meta name="description" content=" {% block description %}  Explore a world of creative possibilities with our diverse collection of free templates, themes, dashboards, and premium items. Download stunning designs for websites, blogs, and applications. Elevate your projects effortlessly with our high-quality, customizable resources. Dive into a realm of innovation and design – where creativity meets functionality. Discover, download, and enhance your digital journey today! {% endblock %} themezoz.com #themezoz themes free themes free templates   "> 
+
+{% block slider %} {% include 'inc/slider.html' %} {% endblock slider %}
+
+{% comment %} {% include 'inc/nav_2.html' %} {% endcomment %}
+
+{% block content %}
+
+  {% if trend_item %}
+
+    <div class="trending bg-gradient " style="--bs-bg-opacity: .6;">
+      <h4 class="bg-gradient customNavigation " style="padding: 3px 13px 3px 20px !important;" >
+         {% comment %} <i class="fa fa-chart-line "></i>  {% endcomment %}
+         <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+            <svg fill="#000000" width="30px" height="30px" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg"><path d="M50.1,30.56a1.16,1.16,0,0,1-2,.82L42.73,26,30.32,36.65a3.39,3.39,0,0,1-4.92,0l-7.49-8.54L4.57,39.81a1.13,1.13,0,0,1-1.64,0l-.59-.59a1.13,1.13,0,0,1,0-1.64L15.46,19.68a3.39,3.39,0,0,1,4.92,0l7.49,7.49,7.61-8.78-4.92-4.45a1.26,1.26,0,0,1,.82-2.11H47.76A2.35,2.35,0,0,1,50,14.3Z"/></svg>
+         <a href="{% url 'trend_item' %}"  class="text-muted" >   Trending Items  </a>  <a  class=" text-muted stop-circle-in-frontpage float-end pe-4 ">  <a  class=" text-muted play-circle-in-frontpage  float-end pe-4"> </a>   </h2>
+      <div class="clear-fix" ></div>
+      <div class="container-fluid" style="--bs-bg-opacity: .6; background: #f8f9fa; padding: 17px;">
+        <div class="row ">
+          <div id="owl-demo-index-trending-template" class="owl-carousel lazyload ">
+                {% for item in trend_item %}
+                  {% include 'templates-parts/item.html' %}
+                {% endfor %}
+          </div>
+      </div>
+    </div>
+    </div>
+  {% else %}
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                    <div class="col-12  ">
+                        <div class="card-body mt-3">
+                            <div class="card alert  ">
+                                <div class="card-body p-1"> <h5 class="card-title name-book text-center fs-6 "> no content ^_^ you can add some themes or template from here </h5> </a>
+                            </div><!-- card  -->
+                        </div><!-- card -body -->
+                    </div><!--col-6 col-md-4 -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+    </div><!-- ./py-5  -->
+  {% endif %}
+
+  {% if premium_items %}
+    <div class="trending bg-gradient " style="--bs-bg-opacity: .6;">
+      <h4 class="bg-gradient customNavigation " style="padding: 3px 13px 3px 20px !important;" > <img src="{% static 'assets/svg/icons/premium-badge-svgrepo-com.svg' %}" alt="">  <a href="{% url 'premium_items' %}"  class="text-muted" >  Premium Items  </a>  <a  class=" text-muted stop-circle-in-frontpage float-end pe-4 ">  <a  class=" text-muted play-circle-in-frontpage  float-end pe-4"> </a>   </h2>
+      <div class="clear-fix" ></div>
+      <div class="container-fluid" style="--bs-bg-opacity: .6; background: #f8f9fa; padding: 17px;">
+        <div class="row ">
+          <div id="owl-demo-index-premium_items-template" class="owl-carousel lazyload ">
+                {% for item in premium_items %}
+                  {% include 'templates-parts/item.html' %}
+                {% endfor %}
+          </div>
+      </div>
+    </div>
+    </div>
+  {% endif %}
+
+  {% if recent_items %}
+    <div class="trending bg-gradient " style="--bs-bg-opacity: .6;">
+      <h4 class="bg-gradient customNavigation " style="padding: 3px 13px 3px 20px !important;" > 
+        <i class="fa fa-history "></i> 
+        <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+        <svg fill="#000000" width="30px" height="30px" viewBox="0 -4.17 29.82 29.82" id="_10_-_Recent_App" data-name="10 - Recent App" xmlns="http://www.w3.org/2000/svg">
+          <path id="Path_170" data-name="Path 170" d="M30.91,7.392v0A2.39,2.39,0,0,0,28.52,5H3.48A2.39,2.39,0,0,0,1.09,7.39v0a2.39,2.39,0,0,0,2.39,2.39H28.52A2.39,2.39,0,0,0,30.91,7.392Zm-2,0v0a.391.391,0,0,1-.39.39H3.48a.391.391,0,0,1-.39-.39v0A.391.391,0,0,1,3.48,7H28.52A.391.391,0,0,1,28.91,7.39Z" transform="translate(-1.09 -5)" fill-rule="evenodd"/>
+          <path id="Path_171" data-name="Path 171" d="M30.91,15.738v0a2.39,2.39,0,0,0-2.39-2.39H3.48a2.39,2.39,0,0,0-2.39,2.39v0a2.39,2.39,0,0,0,2.39,2.39H28.52A2.39,2.39,0,0,0,30.91,15.738Zm-2,0v0a.391.391,0,0,1-.39.39H3.48a.391.391,0,0,1-.39-.39v0a.391.391,0,0,1,.39-.39H28.52A.391.391,0,0,1,28.91,15.736Z" transform="translate(-1.09 -5)" fill-rule="evenodd"/>
+          <path id="Path_172" data-name="Path 172" d="M30.91,24.084v0a2.39,2.39,0,0,0-2.39-2.39H3.48a2.39,2.39,0,0,0-2.39,2.39v0a2.39,2.39,0,0,0,2.39,2.39H28.52A2.39,2.39,0,0,0,30.91,24.084Zm-2,0v0a.391.391,0,0,1-.39.39H3.48a.391.391,0,0,1-.39-.39v0a.391.391,0,0,1,.39-.39H28.52A.391.391,0,0,1,28.91,24.082Z" transform="translate(-1.09 -5)" fill-rule="evenodd"/>
+        </svg>
+        <a href="{% url 'recent_items' %}"  class="text-muted" >   Recent Items  </a>  <a  class=" text-muted stop-circle-in-frontpage float-end pe-4 ">  <a  class=" text-muted play-circle-in-frontpage  float-end pe-4"> </a>   </h2>
+      <div class="clear-fix" ></div>
+      <div class="container-fluid" style="--bs-bg-opacity: .6; background: #f8f9fa; padding: 17px;">
+        <div class="row ">
+          <div id="owl-demo-index-recent-template" class="owl-carousel lazyload ">
+                {% for item in recent_items %}
+                  {% include 'templates-parts/item.html' %}
+                {% endfor %}
+          </div>
+      </div>
+    </div>
+    </div>
+  {% endif %}
+
+  {% if editors_choice %}
+    <div class="trending bg-gradient " style="--bs-bg-opacity: .6;">
+      <h4 class="bg-gradient customNavigation " style="padding: 3px 13px 3px 20px !important;" ><i class="fa fa-bookmark"></i> <a href="{% url 'editors_choice' %}"  class="text-muted" > Editors choice</a>  <a  class=" text-muted stop-circle-in-frontpage float-end pe-4 ">  <a  class=" text-muted play-circle-in-frontpage  float-end pe-4"> </a>   </h2>
+      <div class="clear-fix" ></div>
+      <div class="container-fluid" style="--bs-bg-opacity: .6; background: #f8f9fa; padding: 17px;">
+        <div class="row ">
+          <div id="owl-demo-index-editors_choice" class="owl-carousel lazyload ">
+                {% for item in editors_choice %}
+                  {% include 'templates-parts/item.html' %}
+                {% endfor %}
+          </div>
+      </div>
+    </div>
+    </div>
+  {% endif %}
+
+  {% if random_items %}
+    <div class="trending bg-gradient " style="--bs-bg-opacity: .6;">
+      <h4 class="bg-gradient customNavigation " style="padding: 3px 13px 3px 20px !important;" > <i class="fa fa-random "></i> <a href="{% url 'random_items' %}"  class="text-muted" >  Random Items  </a>  <a  class=" text-muted stop-circle-in-frontpage float-end pe-4 ">  <a  class=" text-muted play-circle-in-frontpage  float-end pe-4"> </a>   </h2>
+      <div class="clear-fix" ></div>
+      <div class="container-fluid" style="--bs-bg-opacity: .6; background: #f8f9fa; padding: 17px;">
+        <div class="row ">
+          <div id="owl-demo-index-random-template" class="owl-carousel lazyload ">
+                {% for item in random_items %}
+                  {% include 'templates-parts/item.html' %}
+                {% endfor %}
+          </div>
+      </div>
+    </div>
+    </div>
+  {% endif %}
+
+{% endblock content %}
+    
+{% comment %} {% block scripts %}  <script src="{% static 'assets/js/animated-slider.js' %}"></script> {% endblock scripts %} {% endcomment %}

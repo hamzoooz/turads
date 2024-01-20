@@ -1,0 +1,373 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+{% load static %}
+
+<title> {% block title %} 
+{% if template.long_title %}
+    {{ template.long_title }}
+{% else %}
+    {{ template.title }}
+{% endif %}
+{% endblock title %} </title>
+
+<meta name="description" content=" {% block description %} {{ template.long_title }} Elevate your projects with our individual design gems. Explore our collection of free templates, themes, dashboards, and premium items tailored for singular brilliance. Download high-quality, customizable elements designed to transform your creative vision into reality. Discover the perfect piece for your project and enhance your digital presence effortlessly. Unleash the power of single items and take your designs to new heights. {% endblock %} themezoz.com #themezoz themes free themes free templates #wordpress #templates     {{ template.title }}  "> 
+{% block content %}
+
+<div class="container d-flex  ">
+    <div class="bg-secondary1  d-flex align-items-center ">
+        <a href="/" class="text-secondary  p-1 "><i class="fa fa-home"></i> </a><i class="fa fa-caret-right text-secondary  "></i>
+        <a href="{% url 'collections'  %}" class="text-secondary  p-1">Coll</a> <i class="fa fa-caret-right text-secondary  "></i>
+        <a href="{% url "category_details"  template.category.first.collections.first.slug   template.category.first.slug template.category.first.id  %}" class="text-secondary  p-1 "> {{ collection.name }}  </a> <i class="fa fa-caret-right text-secondary  "></i>
+        <a href="#" class="text-secondary  p-1 "> {{ category.name }}  </a> 
+        {% comment %} item.category.first.collections.first.slug   item.category.first.slug item.id {% endcomment %}
+        <span class="text-secondary  p-1 "> {{ template.title}}  </span>
+    </div>
+</div>
+
+<div class="py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card shadow ">
+                    <div class="card-body">
+                        <div class="row book_data">
+                            <h1 style="padding: 1px; text-align: center; font-size: 18px;">{% firstof template.long_title template.title %}</h1>
+                               <a style="padding: 1px; text-align: center; font-size: 16px;" href="{% url 'user_detail' template.user.username  %}" class=" text-lead ">  <small>by</small>  {% firstof template.user.username template.user %}  {% if template.user.approved %} <svg width="15" height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> <path d="M10.5213 2.62368C11.3147 1.75255 12.6853 1.75255 13.4787 2.62368L14.4989 3.74391C14.8998 4.18418 15.4761 4.42288 16.071 4.39508L17.5845 4.32435C18.7614 4.26934 19.7307 5.23857 19.6757 6.41554L19.6049 7.92905C19.5771 8.52388 19.8158 9.10016 20.2561 9.50111L21.3763 10.5213C22.2475 11.3147 22.2475 12.6853 21.3763 13.4787L20.2561 14.4989C19.8158 14.8998 19.5771 15.4761 19.6049 16.071L19.6757 17.5845C19.7307 18.7614 18.7614 19.7307 17.5845 19.6757L16.071 19.6049C15.4761 19.5771 14.8998 19.8158 14.4989 20.2561L13.4787 21.3763C12.6853 22.2475 11.3147 22.2475 10.5213 21.3763L9.50111 20.2561C9.10016 19.8158 8.52388 19.5771 7.92905 19.6049L6.41553 19.6757C5.23857 19.7307 4.26934 18.7614 4.32435 17.5845L4.39508 16.071C4.42288 15.4761 4.18418 14.8998 3.74391 14.4989L2.62368 13.4787C1.75255 12.6853 1.75255 11.3147 2.62368 10.5213L3.74391 9.50111C4.18418 9.10016 4.42288 8.52388 4.39508 7.92905L4.32435 6.41553C4.26934 5.23857 5.23857 4.26934 6.41554 4.32435L7.92905 4.39508C8.52388 4.42288 9.10016 4.18418 9.50111 3.74391L10.5213 2.62368Z" stroke="blue" stroke-width="1.5" fill="#ffffff" /> <path d="M9 12L11 14L15 10" stroke="blue" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" /> </svg> {% endif %} </a>
+                            
+   
+
+                            <div class="col-12 col-md-9">
+                                <div class=" shadow  img-thumbnail rounded img-fluid " style="height: 100%; ;background-size: cover; background-repeat: no-repeat; " >
+                                    {% if template.theme_image %}
+                                        <img src="{{template.theme_image.url}}" alt="" style="width: 100%;">
+                                        <hr>
+                                    {% endif %}
+                                    
+                                    {% if template.theme_image1 %}
+                                        <img src="{{template.theme_image1.url}}" alt="" style="width: 100%;">
+                                        <hr>
+                                    {% endif %}
+                                    
+                                    {% if template.theme_image2 %}
+                                        <img src="{{template.theme_image2.url}}" alt="" style="width: 100%;">
+                                        <hr>
+                                    {% endif %}
+                                    
+                                    {% if template.theme_image3 %}
+                                        <img src="{{template.theme_image3.url}}" alt="" style="width: 100%;">
+                                        <hr>
+                                    {% endif %}
+                                    
+                                    {% if template.theme_image4 %}
+                                        <img src="{{template.theme_image4.url}}" alt="" style="width: 100%;">
+                                        <hr>
+                                    {% endif %}
+                                    
+                                    {% if template.theme_image5 %}
+                                        <img src="{{template.theme_image5.url}}" alt="" style="width: 100%;">
+                                        <hr>
+                                    {% endif %}
+                                    
+                                    {% if template.theme_image6 %}
+                                        <img src="{{template.theme_image6.url}}" alt="" style="width: 100%;">
+                                        <hr>
+                                    {% endif %}
+                                    
+                                    {% if template.theme_image7 %}
+                                        <img src="{{template.theme_image7.url}}" alt="" style="width: 100%;">
+                                        <hr>
+                                    {% endif %}
+                                    
+                                    {% if template.theme_image8 %}
+                                        <img src="{{template.theme_image8.url}}" alt="" style="width: 100%;">
+                                        <hr>
+                                    {% endif %}
+                                    
+                                    {% if template.theme_image9 %}
+                                        <img src="{{template.theme_image9.url}}" alt="" style="width: 100%;">
+                                        <hr>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                         <div class="col-12  col-md-3  item_data ">
+                                <div class="row">
+                                    <input type="hidden"  value="{{ template.slug }}" class="book_slug" >
+                                    {% csrf_token %}
+                                    <input type="hidden"  value="{{ template.id }}" class="item_id item_id_in_wishlist" >
+                                    <input type="hidden"  value="{% url 'add_like' %}" class="like_url" >
+                                    <input type="hidden"  value="{% url 'add_dis_like' %}" class="dislike_url" >
+                                    {% if template.selling_price > 0 %}
+                                    <div class="col-6 col-md-12">
+                                        <div  class="btn btn-warning  w-100 mt-2 addToCartBtn read-link "> <i class="fa fa-shopping-cart"></i> Add to Card <span class=" fw-bold  ">{{ template.selling_price |stringformat:"d" }}$</span> </div>
+                                    </div>
+                                    {% else %}
+                                    <div class="col-6 col-md-12 col-md-12">
+                                        {% if template.file %}
+                                            <a download href="{{ template.file.url }}" class="btn btn-primary  add-to-card download-link  w-100 mt-2    download_link_to_increase float-start"  incres_number_of_download="{{ template.id }}"  > <i class="fa fa-download"></i> download    <input type="hidden" value="{{template.id}}" class="incres_number_of_download" /></a>
+                                        {% elif  template.url_download  %}
+                                            <a download href="{{ template.url_download }}" class="btn btn-primary  add-to-card download-link  w-100 mt-2    download_link_to_increase float-start"  incres_number_of_download="{{ template.id }}"  > <i class="fa fa-download"></i> download    <input type="hidden" value="{{template.id}}" class="incres_number_of_download" /></a> 
+                                        {% elif  template.url_download2  %}
+                                            <a download href="{{ template.url_download2 }}" class="btn btn-primary  add-to-card download-link  w-100 mt-2    download_link_to_increase float-start"  incres_number_of_download="{{ template.id }}"  > <i class="fa fa-download"></i> download    <input type="hidden" value="{{template.id}}" class="incres_number_of_download" /></a> 
+                                        {% elif  template.url_downloa3  %}
+                                            <a download href="{{ template.url_downloa3 }}" class="btn btn-primary  add-to-card download-link  w-100 mt-2    download_link_to_increase float-start"  incres_number_of_download="{{ template.id }}"  > <i class="fa fa-download"></i> download    <input type="hidden" value="{{template.id}}" class="incres_number_of_download" /></a> 
+                                        {% elif  template.url_gitgub  %}
+                                            <a download href="{{ template.url_gitgub }}" class="btn btn-primary  add-to-card download-link  w-100 mt-2    download_link_to_increase float-start"  incres_number_of_download="{{ template.id }}"  > <i class="fa fa-download"></i> download    <input type="hidden" value="{{template.id}}" class="incres_number_of_download" /></a> 
+                                        {% elif  template.url_gitlab  %}
+                                            <a download href="{{ template.url_gitlab }}" class="btn btn-primary  add-to-card download-link  w-100 mt-2    download_link_to_increase float-start"  incres_number_of_download="{{ template.id }}"  > <i class="fa fa-download"></i> download    <input type="hidden" value="{{item.id}}" class="incres_number_of_download" /></a> 
+                                        {% endif %} 
+                                    </div>
+                                    {% endif %}
+                                    <div class="col-6 col-md-12 ">
+                                        {% if template.demo %}
+                                            <a href="{{ template.demo }}" class="read-link btn btn-success w-100 mt-2  "> <i class="fa fa-eye"></i> Demo </a>            
+                                        {% elif  template.demo1  %}
+                                            <a href="{{ template.demo1 }}" class="read-link btn btn-success w-100 mt-2  "> <i class="fa fa-eye"></i> Demo </a>            
+                                        {% elif  template.demo2 %}
+                                            <a href="{{ template.demo2 }}" class="read-link btn btn-success w-100 mt-2  "> <i class="fa fa-eye"></i> Demo </a>            
+                                        {% elif  template.demo3 %}
+                                            <a href="{{ template.demo3 }}" class="read-link btn btn-success w-100 mt-2  "> <i class="fa fa-eye"></i> Demo </a>
+                                        {% elif  template.file.url %}
+                                            <a href="{{ template.file.url }}" class="read-link btn btn-success w-100 mt-2  "> <i class="fa fa-eye"></i> Demo </a>
+                                        {% else  %}
+                                            <a href="#" class="read-link btn btn-success w-100 mt-2 "> <i class="fa fa-eye"></i> Demo </a>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    <div class="col-6 col-md-12 ">
+                                        <button class="read-link btn btn-info add_to_wishlist  w-100 mt-2 "> <i class="fa fa-heart"></i>add to fav</button>
+                                    </div>
+
+                                    <div class="col-6 col-md-12 ">
+                                        <a target="_blank"  href="https://www.digitalocean.com/?refcode=66872a7e0532&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"  class=" read-link  btn btn-secondary    w-100 mt-2  " style="color: black; font-weight: bold; background:url('https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%203.svg'); background-size: contain; background-repeat: no-repeat ;background-position: right;">   <span class="float-start " style="margin-left:3px" > Get 200$ for free  </span>    </a>
+                                        {% comment %} <a href="https://www.digitalocean.com/?refcode=66872a7e0532&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"><img src="https://web-platforms.sfo2.cdn.digitaloceanspaces.com/WWW/Badge%201.svg" alt="DigitalOcean Referral Badge" /></a> {% endcomment %}
+                                        {% comment %} <a href="https://www.digitalocean.com/?refcode=66872a7e0532&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge"><img src="https://web-platforms.sfo2.digitaloceanspaces.com/WWW/Badge%202.svg" alt="DigitalOcean Referral Badge" /></a> {% endcomment %}
+                                    </div>
+                                    <div class="col-6 col-md-12 ">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <button class="read-link btn btn-secondary add_like  w-100 mt-2 "> <i class="fa fa-thumbs-up"> </i> like</button>
+                                            </div>
+
+                                            <div class="col-6">
+                                                <button class="read-link btn btn-secondary add_dis_like  w-100 mt-2 "> <i class="fa fa-thumbs-down"> </i> dis like</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div> 
+                                        {% comment %} <small>by</small> <a href="{% url 'user_detail' template.user.username  %}" class=" text-lead ">  {% firstof template.user.username template.user %}  {% if template.user.approved %} <svg width="15" height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> <path d="M10.5213 2.62368C11.3147 1.75255 12.6853 1.75255 13.4787 2.62368L14.4989 3.74391C14.8998 4.18418 15.4761 4.42288 16.071 4.39508L17.5845 4.32435C18.7614 4.26934 19.7307 5.23857 19.6757 6.41554L19.6049 7.92905C19.5771 8.52388 19.8158 9.10016 20.2561 9.50111L21.3763 10.5213C22.2475 11.3147 22.2475 12.6853 21.3763 13.4787L20.2561 14.4989C19.8158 14.8998 19.5771 15.4761 19.6049 16.071L19.6757 17.5845C19.7307 18.7614 18.7614 19.7307 17.5845 19.6757L16.071 19.6049C15.4761 19.5771 14.8998 19.8158 14.4989 20.2561L13.4787 21.3763C12.6853 22.2475 11.3147 22.2475 10.5213 21.3763L9.50111 20.2561C9.10016 19.8158 8.52388 19.5771 7.92905 19.6049L6.41553 19.6757C5.23857 19.7307 4.26934 18.7614 4.32435 17.5845L4.39508 16.071C4.42288 15.4761 4.18418 14.8998 3.74391 14.4989L2.62368 13.4787C1.75255 12.6853 1.75255 11.3147 2.62368 10.5213L3.74391 9.50111C4.18418 9.10016 4.42288 8.52388 4.39508 7.92905L4.32435 6.41553C4.26934 5.23857 5.23857 4.26934 6.41554 4.32435L7.92905 4.39508C8.52388 4.42288 9.10016 4.18418 9.50111 3.74391L10.5213 2.62368Z" stroke="blue" stroke-width="1.5" fill="#ffffff" /> <path d="M9 12L11 14L15 10" stroke="blue" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" /> </svg> {% endif %} </a> {% endcomment %}
+                                    </div>
+                                    
+
+                                    <table class="table">
+                                        <tbody>
+
+                                            <tr>
+                                                
+                                                <th scope="row">Publised</th>
+                                                <td><small> {{ template.created_at|naturaltime   }}</td>
+                                                    
+                                            </tr>
+                                            <tr>
+                                                <!-- Last Update  -->
+                                                <th scope="row">Update</th>
+                                                {% comment %} <td><small> <i class="fa fa-history "> </i> {{ template.updated_at|naturaltime   }}  </td> {% endcomment %}
+                                                <td><small> <i class="fa fa-history "> </i>  {{ template.created_at|naturaltime   }}  </td>
+                                            </tr>
+                                                <!-- Rating  -->
+                                            <tr>
+                                                <th scope="row">Rating</th>
+                                                <td><small> <i class="fa fa-star "> </i>  {{ rating   }}</td>
+                                            </tr>
+                                                        
+ 
+                                            <!-- Number of download  -->
+                                            <tr>
+                                                <th scope="row"> {% if  template.selling_price > 0 %}  No. Sale {% else %} No. downloads  {% endif %} </th>
+                                                <td><small> <i class="fa fa-download   "> </i>  {{ template.number_of_downloads   }}   </td>
+                                            </tr>
+                                            
+                                            <!-- The size   -->
+                                            {% if template.size %}
+                                            <tr>
+                                                <th scope="row"> Size  </th>
+                                                <td><small> <i class="fa fa-weight-hanging  "> </i>{{ template.size|filesizeformat }}   </td>
+                                            </tr>
+                                            {% endif %}
+
+                                            {% if template.number_of_views %}
+                                            <tr>
+                                                <th scope="row"> View  </th>
+                                                <td><small> <i class="fa fa-eye  "> </i>  {{ template.number_of_views }}   </td>
+                                            </tr>
+                                            {% endif %}
+
+                                            <!-- Number of pages   -->
+                                            {% if template.number_pages %}
+                                            <tr>
+                                                <th scope="row"> N.o Pages   </th>
+                                                <td><small> <i class="fa fa-weight-hanging  "> </i>  {{ template.number_pages }} page  </td>
+                                            </tr>
+                                            {% endif %}
+                                        </tbody>
+                                    </table>
+ 
+
+ 
+ 
+
+                                    
+                                </div>
+                                <!-- sharing and reporting and edite -->
+                                <div class="sharing-in-single pt-4 text-center ">
+                                    {% if template.user.user == request.user or request.user.is_staff %}
+                                        <a href="#"> <span style="padding:1px; " class="icon-in-share" ><i class="fa fa-edit"></i></span> </a>
+                                    {% else %}
+
+                                    <span style="padding:1px; " class="icon-in-share" ><i class="fa fa-edit"></i></span>
+
+                                    {% endif %}
+                                    <span style="padding:1px; " class="icon-in-share" ><i class="fa fa-share-square"></i></span>
+                                    <span style="padding:1px; " class="icon-in-share" ><i class="fa fa-share-alt"></i></span>
+                                    <span style="padding:1px; " class="icon-in-share" ><i class="fa fa-triangle-exclamation"></i></span>
+                                </div><!-- sharing-in-single -->
+                                
+
+
+                                <form action="#" class="rating-book" method="POST" >    
+                                    {% csrf_token %}
+                                    
+                                    <input  type="hidden"  name="vlaue" id="rating_value_book" min="1" max="5"  >
+                                    <!--  <button class="btn btn-info">submit</button> -->
+                                    <!-- Rating System -->
+                                    <div class="rating_system pt-3 text-center ">
+                                        <div class="rating_item"  style="display: inline-block;" >
+                                            <input type="hidden" class='template_url' value="{% url 'rating_item' template.id %}" >
+                                            <input type="radio" class=" star_item_input_5" name="rating" value="5" {% if rating_item.rating == 5 %}checked{% endif %}  style="display: none;" >
+                                            <label for="star5"  class="p-0 star_item_5" style="font-size: 25px; font-weight:bold; color: #ccc; cursor: pointer;"   >&#9733;</label>
+                                            <input type="radio" class="  star_item_input_4" name="rating" value="4" {% if rating_item.rating == 4 %}checked{% endif %}  style="display: none;" >
+                                            <label for="star4"  class="p-0 star_item_4" style="font-size: 25px; font-weight:bold; color: #ccc; cursor: pointer;"   >&#9733;</label>
+                                            <input type="radio" class="  star_item_input_3" name="rating" value="3" {% if rating_item.rating == 3 %}checked{% endif %}  style="display: none;" >
+                                            <label for="star3"  class="p-0 star_item_3" style="font-size: 25px; font-weight:bold; color: #ccc; cursor: pointer;"   >&#9733;</label>
+                                            <input type="radio" class="  star_item_input_2" name="rating" value="2" {% if rating_item.rating == 2 %}checked{% endif %}  style="display: none;" >
+                                            <label for="star2"  class="p-0 star_item_2" style="font-size: 25px; font-weight:bold; color: #ccc; cursor: pointer;"   >&#9733;</label>
+                                            <input type="radio" class="  star_item_input_1" name="rating" value="1" {% if rating_item.rating == 1 %}checked{% endif %}  style="display: none;" >
+                                            <label for="star1"  class="p-0 star_item_1" style="font-size: 25px; font-weight:bold; color: #ccc; cursor: pointer;"   >&#9733;</label>
+
+                                        </div>
+                                    </div><!-- rating pt-3 text-center -->
+                                </form>
+                            </div><!-- col-6 col-md-4 -->
+
+
+                        </div><!-- .row  -->
+                    </div><!-- .card-body -->
+                    
+                    {% if template.small_description %}
+                        <div class="card mt-2">
+                            <div class="card-body description ">
+                                {{ template.small_description }}
+                            </div>
+                        </div>
+                    {% endif %}
+                    
+                    {% if template.description %}
+                        <div class="card mt-2">
+                            <div class="card-body description ">
+                                {{ template.description }}
+                            </div>
+                        </div>
+                    {% endif %}
+                    
+                    {% if template.Features %}
+                        <div class="card mt-2">
+                            <div class="card-body description ">
+                                {{ template.Features }}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <!-- <p class="text-center d-flex justify-content-around text-lead" >
+                        <a  style="width:45%;" class=" toggle_button_in_single btn btn-secondary p-1  " data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">  <i class="fa fa-angle-double-down pe-2 "></i> <i class="fa fa-comments"></i> Comments  </a>
+                        <button  style="width:45%;" class=" toggle_button_in_single btn btn-secondary p-1 text-lead " type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2"><i class="fa fa-angle-double-down pe-2"></i>  <i class="fa fa-quote-left"></i> Quotes <i class="fa fa-quote-right"></i> </button>
+                    </p> -->
+
+                    <div class="row ">
+                        {% comment %} {% include 'comments/add_comment.html' %}                                                
+                        {% include 'qoutes/add_quote.html' %} {% endcomment %}
+                    </div><!-- .row -->
+                    <div class="mt-2 accordion container" id="accordionExample">
+                        {% if similar_books %}
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne"> <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> Similar Books </button></h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                        <div class="accordion-body">
+                                            <ul>
+                                                {% for book in similar_books %}
+                                                    <a href=" # k.slug  %}"> <li class="samiler_book w-100 text-lead "> {{ book.name }} </li> </a>
+                                                {% endfor %}
+                                            </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if same_category %}
+                        
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                In The Same Category
+                            </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <ul>
+                                    {% for book in same_category %}
+                                        <a href=" # k.slug  %}"> <li class="samiler_book w-100 text-lead "> {{ book.name }} </li> </a>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if random_book %}
+                    
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Random book 
+                          </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                          <div class="accordion-body">
+                            <ul>
+                                {% for book in random_book %}
+                                    <a href=" # k.slug  %}"> <li class="samiler_book w-100 text-lead "> {{ book.name }} </li> </a>
+                                {% endfor %}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      {% endif %}
+                    </div>
+                </div><!-- .card shadow product_data -->
+            </div><!-- .col-md-12 -->
+        </div><!-- .row -->
+    </div><!-- .container -->
+    
+</div><!-- ./py-5  -->
+
+{% endblock content %}
+
+{% comment %} templates/qoutes/add_quote.html {% endcomment %}
+
+
+
+{% comment %} 1985318 {% endcomment %}
+{% comment %} khaf allah yousif => MBOK {% endcomment %}

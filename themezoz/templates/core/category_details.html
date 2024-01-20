@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<title> {% block title %} {{ category.name }} {% endblock title %} </title>
+<meta name="description" content=" {% block description %}  {{ category.name }}  || Immerse yourself in a world of creativity on our Category Page. Explore an extensive collection of free templates, themes, dashboards, and premium items meticulously categorized to suit your design needs. Download high-quality resources tailored to enhance your projects. From stylish themes to powerful dashboards, discover the perfect elements to elevate your digital experience. Explore the diverse categories and unlock the potential of premium design for every aspect of your website or application. {% endblock %} themezoz.com #themezoz themes free themes free templates #wordpress #templates "> 
+
+{% block content %}
+
+{% if items_list  %}
+<div class="container d-flex  ">
+    <div class="py-1 bg-secondary1  d-flex align-items-center ">
+        <a href="/" class="text-secondary  p-2 "><i class="fa fa-home"></i> </a><i class="fa fa-caret-right text-secondary  "></i>
+        <a href="{% url 'collections' %}" class="text-secondary  p-2">Collections  </a> <i class="fa fa-caret-right text-secondary  "></i>
+        <a href="{% url 'category' collection.slug collection.id %}" class="text-secondary  p-2 "> {{ collection.name }}  </a> <i class="fa fa-caret-right text-secondary  "></i>
+        <a href="#" class="text-secondary  p-2 "> {{ category.name }}  </a> 
+        <span class="text-secondary  p-2 "> {{ template.title}}  </span>
+    </div>
+</div>
+
+<div class="trending bg-gradient " style="--bs-bg-opacity: .6;">
+  <h4 class="bg-gradient customNavigation " style="padding: 3px 13px 3px 20px !important;" > <a href="#"  class="text-muted" >    </a>  <a  class=" text-muted stop-circle-in-frontpage float-end pe-4 ">  <a  class=" text-muted play-circle-in-frontpage  float-end pe-4"> </a>   </h2>
+  <div class="clear-fix" ></div>
+  <div class="container-fluid" style="--bs-bg-opacity: .6; background: #f8f9fa; padding: 17px;">
+    <div class="row ">
+      <div id="owl-demo-index-template" class="owl-carousel">
+          {% for item in items_list %}
+            {% include 'templates-parts/item.html' %}
+          {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if items_list  %}
+<div class="container">
+  <div class="row">
+    {% for item in items_list %}
+    <div class="col-6 col-md-4 col-lg-3 " style="padding: 2px;" >
+            <div class="parent" >
+              {% include 'templates-parts/item.html' %}
+            </div>
+          </div><!--col-6 col-md-4 -->
+          {% endfor %}
+    </div><!-- .row -->
+</div><!-- .container -->
+
+
+{% else %}
+  <div class="py-5">
+      <div class="container">
+          <div class="row">
+                  <div class="col-12  ">
+                      <div class="card-body mt-3">
+                          <div class="card alert  ">
+                              <div class="card-body p-1"> <h5 class="card-title name-book text-center fs-6 "> no content ^_^ you can add some themes or template from here </h5> </a>
+                          </div><!-- card  -->
+                      </div><!-- card -body -->
+                  </div><!--col-6 col-md-4 -->
+          </div><!-- .row -->
+      </div><!-- .container -->
+  </div><!-- ./py-5  -->
+
+{% endif %}
+
+{% endblock content %}

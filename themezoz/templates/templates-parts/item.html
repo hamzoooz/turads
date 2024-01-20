@@ -1,0 +1,130 @@
+<div class="  item_data shadow " id="item_id_{{item.id}}">
+    <div class="card  h-100 d-flex ">
+        <span class="dropdown d-flex justify-content-between ">
+            <span class="dropdown-toggle float-end "  data-bs-toggle="dropdown" aria-expanded="false" style="padding: 0;margin: 1px 3px;cursor: pointer;" >
+                  {% comment %} <i class="fa fa-list-dots fa-lg "></i>  {% endcomment %}
+                <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                <svg fill="#000000" width="20px" height="20px" viewBox="0 -4.17 29.82 29.82" id="_10_-_Recent_App" data-name="10 - Recent App" xmlns="http://www.w3.org/2000/svg">
+                    <path id="Path_170" data-name="Path 170" d="M30.91,7.392v0A2.39,2.39,0,0,0,28.52,5H3.48A2.39,2.39,0,0,0,1.09,7.39v0a2.39,2.39,0,0,0,2.39,2.39H28.52A2.39,2.39,0,0,0,30.91,7.392Zm-2,0v0a.391.391,0,0,1-.39.39H3.48a.391.391,0,0,1-.39-.39v0A.391.391,0,0,1,3.48,7H28.52A.391.391,0,0,1,28.91,7.39Z" transform="translate(-1.09 -5)" fill-rule="evenodd"/>
+                    <path id="Path_171" data-name="Path 171" d="M30.91,15.738v0a2.39,2.39,0,0,0-2.39-2.39H3.48a2.39,2.39,0,0,0-2.39,2.39v0a2.39,2.39,0,0,0,2.39,2.39H28.52A2.39,2.39,0,0,0,30.91,15.738Zm-2,0v0a.391.391,0,0,1-.39.39H3.48a.391.391,0,0,1-.39-.39v0a.391.391,0,0,1,.39-.39H28.52A.391.391,0,0,1,28.91,15.736Z" transform="translate(-1.09 -5)" fill-rule="evenodd"/>
+                    <path id="Path_172" data-name="Path 172" d="M30.91,24.084v0a2.39,2.39,0,0,0-2.39-2.39H3.48a2.39,2.39,0,0,0-2.39,2.39v0a2.39,2.39,0,0,0,2.39,2.39H28.52A2.39,2.39,0,0,0,30.91,24.084Zm-2,0v0a.391.391,0,0,1-.39.39H3.48a.391.391,0,0,1-.39-.39v0a.391.391,0,0,1,.39-.39H28.52A.391.391,0,0,1,28.91,24.082Z" transform="translate(-1.09 -5)" fill-rule="evenodd"/>
+                </svg>      
+                </span>
+            <ul class="dropdown-menu coustom-dropdown " style="transform: translate(30px, 26px); position: absolute; inset: 0px auto auto 0px; margin: 0px;opacity: 0.8;">
+                {% if request.user.is_staff %}
+                    <input type="hidden"  value="{{ item.id }}" class="item_class_{{ item.id }}" >
+                    <li><a class="dropdown-item" href="#"> <i class="fa fa-edit"></i> Edit</a></li>
+                    <li><a class="dropdown-item move-to-draft ">  <i class="fa fa-trash-alt "></i> Dedete</a></li>
+                {% elif item.user == request.user %}
+                    <input type="hidden"  value="{{ item.id }}" class="item_id" >
+                    <li><a class="dropdown-item" href="#"> <i class="fa fa-edit"></i> Edit</a></li>
+                    <li><a class="dropdown-item move-to-draft">  <i class="fa fa-trash-alt "></i> Dedete</a></li>
+ 
+                {% endif %}
+                <input type="hidden"  value="{{ item.id }}" class="item_id_in_wishlist" >
+                {% csrf_token %}
+                <li><button class="dropdown-item add_to_wishlist" > <i class="fa fa-heart"></i> Favoret </button></li>
+                <li><a class="dropdown-item" href="#"> <i class="fa fa-share-square"></i> shar</a></li>
+                <li><a class="dropdown-item" href="#"> <i class="fa fa-triangle-exclamation"></i> Report </a></li>
+            </ul>
+
+            {% if item.approved %} <span class="abrov-item"  >  <svg  style="margin:auto; vertical-align: baseline; " width="15" height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> <path d="M10.5213 2.62368C11.3147 1.75255 12.6853 1.75255 13.4787 2.62368L14.4989 3.74391C14.8998 4.18418 15.4761 4.42288 16.071 4.39508L17.5845 4.32435C18.7614 4.26934 19.7307 5.23857 19.6757 6.41554L19.6049 7.92905C19.5771 8.52388 19.8158 9.10016 20.2561 9.50111L21.3763 10.5213C22.2475 11.3147 22.2475 12.6853 21.3763 13.4787L20.2561 14.4989C19.8158 14.8998 19.5771 15.4761 19.6049 16.071L19.6757 17.5845C19.7307 18.7614 18.7614 19.7307 17.5845 19.6757L16.071 19.6049C15.4761 19.5771 14.8998 19.8158 14.4989 20.2561L13.4787 21.3763C12.6853 22.2475 11.3147 22.2475 10.5213 21.3763L9.50111 20.2561C9.10016 19.8158 8.52388 19.5771 7.92905 19.6049L6.41553 19.6757C5.23857 19.7307 4.26934 18.7614 4.32435 17.5845L4.39508 16.071C4.42288 15.4761 4.18418 14.8998 3.74391 14.4989L2.62368 13.4787C1.75255 12.6853 1.75255 11.3147 2.62368 10.5213L3.74391 9.50111C4.18418 9.10016 4.42288 8.52388 4.39508 7.92905L4.32435 6.41553C4.26934 5.23857 5.23857 4.26934 6.41554 4.32435L7.92905 4.39508C8.52388 4.42288 9.10016 4.18418 9.50111 3.74391L10.5213 2.62368Z" stroke="blue" stroke-width="1.5" fill="#ffffff" /> <path d="M9 12L11 14L15 10" stroke="blue" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" /> </svg> </span> {% endif %}
+ 
+            <!-- Rating System -->
+            <span class="rating-system text-center float-start"> <span style="  padding-right: 4px;" ><i style="font-size: 12px;vertical-align: baseline; padding-right: 1px;" class="fa fa-star "></i> {{ item.rating }} </span></span> </span>
+
+            <a href="{% url 'single_template' item.category.first.collections.first.slug   item.category.first.slug item.id  %}">
+                {% if item.theme_image or item.theme_image1 or item.theme_image2 or item.theme_image3 or item.theme_image4 or item.theme_image5 or item.theme_image6 or item.theme_image7 or item.theme_image8 or item.theme_image_url or item.theme_image_url_1 or item.theme_image_url_2 or item.theme_image_url_3 or item.theme_image_url_4 or item.theme_image_url_5 or item.theme_image_url_6 or item.theme_image_url_7 or item.theme_image_url_8 or item.theme_image_url_9 %}
+                        {% if item.theme_image %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image.url }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% elif item.theme_image1 %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image1.url }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% elif item.theme_image2 %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image2.url }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% elif item.theme_image3 %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image3.url }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% elif item.theme_image4 %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image4.url }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% elif item.theme_image5 %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image5.url }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% elif item.theme_image6 %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image6.url }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% elif item.theme_image7 %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image7.url }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% elif item.theme_image8 %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image8.url }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% elif item.theme_image_url %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image_url }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% elif item.theme_image_url_1 %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image_url_1 }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% elif item.theme_image_url_2 %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image_url_2 }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% elif item.theme_image_url_3 %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image_url_3 }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% elif item.theme_image_url_4 %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image_url_4 }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% elif item.theme_image_url_5 %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image_url_5 }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% elif item.theme_image_url_6 %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image_url_6 }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% elif item.theme_image_url_7 %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image_url_7 }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% elif item.theme_image_url_8 %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image_url_8 }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% elif item.theme_image_url_9 %}
+                            <div class="bg-image coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block " style="background-image: url('{{ item.theme_image_url_9 }}');  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% else %}
+                            <!-- Add a default background if none of the theme images are available -->
+                            <div class="bg-default" style="background-color: #f0f0f0;  width: 15rem; height: 300px; background-position: top; background-size: cover; background-repeat: no-repeat;"></div>
+                        {% endif %}
+                {% else %}
+                    <!-- If no theme image fields have a value, show a default background -->
+                    <div class="coner card-img-top lazyOwl rounded img-thumbnail mx-auto d-block" style="width: 15rem; height: 300px; background-color: #f0f0f0;"></div>
+                {% endif %}
+
+
+
+                
+                <div class="card-body p-1"> <div class="card-title name-item text-center " style="font-size: 17px; font-wigth:bold " ><small> {{ item.title }} </small> </div>
+            </a>
+            
+            <a href="{% url 'user_detail' item.user.username %}" class=" text-muted ">  <div class="item-user p-2 mt-1" style="font-size: 13px;" > {% firstof item.user.get_full_name item.user.username %}  {% if item.user.approved %} <svg width="15" height="15" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"> <path d="M10.5213 2.62368C11.3147 1.75255 12.6853 1.75255 13.4787 2.62368L14.4989 3.74391C14.8998 4.18418 15.4761 4.42288 16.071 4.39508L17.5845 4.32435C18.7614 4.26934 19.7307 5.23857 19.6757 6.41554L19.6049 7.92905C19.5771 8.52388 19.8158 9.10016 20.2561 9.50111L21.3763 10.5213C22.2475 11.3147 22.2475 12.6853 21.3763 13.4787L20.2561 14.4989C19.8158 14.8998 19.5771 15.4761 19.6049 16.071L19.6757 17.5845C19.7307 18.7614 18.7614 19.7307 17.5845 19.6757L16.071 19.6049C15.4761 19.5771 14.8998 19.8158 14.4989 20.2561L13.4787 21.3763C12.6853 22.2475 11.3147 22.2475 10.5213 21.3763L9.50111 20.2561C9.10016 19.8158 8.52388 19.5771 7.92905 19.6049L6.41553 19.6757C5.23857 19.7307 4.26934 18.7614 4.32435 17.5845L4.39508 16.071C4.42288 15.4761 4.18418 14.8998 3.74391 14.4989L2.62368 13.4787C1.75255 12.6853 1.75255 11.3147 2.62368 10.5213L3.74391 9.50111C4.18418 9.10016 4.42288 8.52388 4.39508 7.92905L4.32435 6.41553C4.26934 5.23857 5.23857 4.26934 6.41554 4.32435L7.92905 4.39508C8.52388 4.42288 9.10016 4.18418 9.50111 3.74391L10.5213 2.62368Z" stroke="blue" stroke-width="1.5" fill="#ffffff" /> <path d="M9 12L11 14L15 10" stroke="blue" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" /> </svg> {% endif %}  </div> </a>
+            <input type="hidden"  value="{{ item.id }}" class="item_id" >
+            <div class=" d-flex justify-content-between">
+                
+                {% if item.selling_price %}
+                    {% csrf_token %}
+                        <a  class="btn btn-warning  add-to-card  addToCartBtn "> <i class="fa fa-shopping-cart"></i> Card </a> 
+                        <span class=" fw-bold  ">{{ item.selling_price |stringformat:"d" }}$</span>
+                    {% else %}
+                    {% if item.file %}
+                        <a   href="{{ item.file.url }}" class="btn btn-primary  add-to-card download-link  download_link_to_increase float-start"  incres_number_of_download="{{ item.id }}"  > <i class="fa fa-download"></i> download    <input type="hidden" value="{{item.id}}" class="incres_number_of_download download="download" " /></a>
+                    {% elif  item.url_download  %}
+                        <a   href="{{ item.url_download }}" class="btn btn-primary  add-to-card download-link  download_link_to_increase float-start"  incres_number_of_download="{{ item.id }}"  > <i class="fa fa-download"></i> download    <input type="hidden" value="{{item.id}}" class="incres_number_of_download" download="download"  /></a> 
+                    {% elif  item.url_download2  %}
+                        <a   href="{{ item.url_download2 }}" class="btn btn-primary  add-to-card download-link  download_link_to_increase float-start"  incres_number_of_download="{{ item.id }}"  > <i class="fa fa-download"></i> download    <input type="hidden" value="{{item.id}}" class="incres_number_of_download" download="download"  /></a> 
+                    {% elif  item.url_downloa3  %}
+                        <a   href="{{ item.url_downloa3 }}" class="btn btn-primary  add-to-card download-link  download_link_to_increase float-start"  incres_number_of_download="{{ item.id }}"  > <i class="fa fa-download"></i> download    <input type="hidden" value="{{item.id}}" class="incres_number_of_download" download="download"  /></a> 
+                    {% elif  item.url_gitgub  %}
+                        <a   href="{{ item.url_gitgub }}" class="btn btn-primary  add-to-card download-link  download_link_to_increase float-start"  incres_number_of_download="{{ item.id }}"  > <i class="fa fa-download"></i> download    <input type="hidden" value="{{item.id}}" class="incres_number_of_download" download="download"  /></a> 
+                    {% elif  item.url_gitlab  %}
+                        <a   href="{{ item.url_gitlab }}" class="btn btn-primary  add-to-card download-link  download_link_to_increase float-start"  incres_number_of_download="{{ item.id }}"  > <i class="fa fa-download"></i> download    <input type="hidden" value="{{item.id}}" class="incres_number_of_download" download="download"  /></a> 
+                    {% endif %}
+                    {% endif %}
+
+                    {% if item.demo %}
+                        <a href="{{ item.demo }}" class="btn btn-success add-to-card  read-link float-end "> <i class="fa fa-eye"></i> Demo </a>            
+                    {% elif  item.demo1  %}
+                        <a href="{{ item.demo1 }}" class="btn btn-success add-to-card  read-link float-end "> <i class="fa fa-eye"></i> Demo </a>            
+                    {% elif  item.demo2 %}
+                        <a href="{{ item.demo2 }}" class="btn btn-success add-to-card  read-link float-end "> <i class="fa fa-eye"></i> Demo </a>            
+                    {% elif  item.demo3 %}
+                        <a href="{{ item.demo3 }}" class="btn btn-success add-to-card  read-link float-end "> <i class="fa fa-eye"></i> Demo </a>
+                    {% else  %}
+                        <a href="{% url 'single_template' item.category.first.collections.first.slug   item.category.first.slug item.id  %}" class="btn btn-success add-to-card  read-link float-end "> <i class="fa fa-eye"></i> Demo </a>
+                    {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>

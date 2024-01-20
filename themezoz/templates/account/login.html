@@ -1,0 +1,117 @@
+{% extends "account/base.html" %}
+{% load socialaccount %} 
+
+{% load widget_tweaks %} {% load i18n %} {% block content %}
+<meta name="description" content=" {% block description %}  Unlock a world of design possibilities on our login page. Access exclusive free templates, themes, dashboards, and premium items. Elevate your creative journey with personalized resources tailored to your needs. Log in to discover and download high-quality designs that enhance your projects. Your gateway to a seamless fusion of style and functionality awaits – login now and explore the endless potential of our premium collection  {% endblock %} themezoz.com #themezoz themes free themes free templates #wordpress #templates   "> 
+<title> {% block title %} Login {% endblock title %} </title>
+
+<div class="container trending bg-gradient" style="--bs-bg-opacity: 0.6">
+  <h2 class="text-lead p-2">{% trans "Sign In" %}</h2>
+  <div class="row py-5">
+    <div class="card h-100 shadow text-center pt-2">
+
+      {% get_providers as socialaccount_providers %}
+      <div class="socialaccount_ballot">
+        {% comment %} <!-- <ul class="socialaccount_providers">
+          {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+        </ul> --> {% endcomment %}
+      </div>
+
+      {% if socialaccount_providers %} {% include "socialaccount/snippets/login_extra.html" %} {% else %}
+      <p>
+        {% blocktrans %}If you have not created an account yet, then please
+        <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
+      </p>
+      {% endif %}
+
+ 
+
+    <div class="row">
+
+        <div class="col-12 col-md-6">
+
+          <form method="post" action="/accounts/google/login/?process=login">
+            {% csrf_token %}
+            <button class='btn w-100' style='background:#ea4335; color:#FFF' type="submit">    <i class="fab fa-google "></i> {% trans "Google" %}</button>
+          </form>
+        </div>
+        
+        <div class="col-12 col-md-6">
+
+          <form method="post" action="/accounts/github/login/?process=login">
+            {% csrf_token %}
+            <button class='btn   w-100' style='background:#656d7d; color:#FFF' type="submit">   <i class="fab fa-github "></i> {% trans "Github" %}</button>
+          </form>
+        </div>
+
+        {% comment %} <div class="col-12 col-md-6">
+          <form method="post" action="/accounts/twitter/login/?process=login">
+            {% csrf_token %}
+            <button class='btn   w-100' style='background:#00abee; color:#FFF' type="submit">   <i class="fab fa-twitter "></i> {% trans "twitter" %}</button>
+          </form>
+        </div> {% endcomment %}
+{% comment %} 
+        <div class="col-12 col-md-6">
+          <form method="post" action="/accounts/facebook/login/?process=login">
+            {% csrf_token %}
+            <button class='btn   w-100' style='background:#3b5998; color:#FFF'  type="submit"> <i class="fab fa-facebook "></i> {% trans "Facebook" %}</button>
+          </form>
+        </div> {% endcomment %}
+    </div>
+    
+    <form class="login" method="POST"  action="{% url 'account_login' %} ">
+      {% csrf_token %} 
+      <div class="row">
+        <div class="col-12 col-md-6">
+          {{ form.login|add_class:"form-control m-2" }} 
+        </div>
+        <div class="col-12 col-md-6">
+          {{ form.password|add_class:"form-control m-2" }}
+        </div>
+      </div>
+
+        {{ form.remember }} Remember me <br />
+          {% if redirect_field_value %}   value="{{ redirect_field_value }}"  /> {% endif %}
+
+          <li > <button class="btn btn-primary form-control w-100 button secondaryAction primaryAction" type="submit">  {% trans "Sign In" %} &raquo; </button>  </li>
+          <br />
+          
+          {% comment %} <a   class="button secondaryAction float-left"   href="{% url 'account_reset_password' %}"    >{% trans "Forgot Password?" %}</a   > {% endcomment %}
+          </form>
+          
+          <p>
+            {% blocktrans %}If you have not created
+            <a class="lead" href="{{ signup_url }}">sign up</a> first.
+            {% endblocktrans %}
+          </p>
+          
+      </div>
+  </div>
+
+</div>
+
+{% endblock content %} 
+{% block scripts %}
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: "995743558317906",
+        xfbml: true,
+        version: "v18.0",
+      });
+      FB.AppEvents.logPageView();
+    };
+
+    (function (d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, "script", "facebook-jssdk");
+  </script>
+{% endblock scripts %}
