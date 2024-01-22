@@ -1,3 +1,5 @@
+{% load humanize %}
+
 <div class="  item_data shadow " id="item_id_{{item.id}}">
     <div class="card  h-100 d-flex ">
         <span class="dropdown d-flex justify-content-between ">
@@ -95,7 +97,8 @@
                 {% if item.selling_price %}
                     {% csrf_token %}
                         <a  class="btn btn-warning  add-to-card  addToCartBtn "> <i class="fa fa-shopping-cart"></i> Card </a> 
-                        <span class=" fw-bold  ">{{ item.selling_price |stringformat:"d" }}$</span>
+                        <span class=" fw-bold  ">{{ item.selling_price |stringformat:"d" }} UGX</span>
+                        {% comment %} <span class=" fw-bold  ">{{ item.selling_price |floatformat:2 |currency }} UGX</span> {% endcomment %}
                     {% else %}
                     {% if item.file %}
                         <a   href="{{ item.file.url }}" class="btn btn-primary  add-to-card download-link  download_link_to_increase float-start"  incres_number_of_download="{{ item.id }}"  > <i class="fa fa-download"></i> download    <input type="hidden" value="{{item.id}}" class="incres_number_of_download download="download" " /></a>

@@ -313,15 +313,11 @@ server {
 }
 
 
-sudo ln -s /etc/nginx/sites-available/themezoz /etc/nginx/sites-enabled
+sudo ln -s /etc/nginx/sites-available/  /etc/nginx/sites-enabled
 
 
 sudo nginx -t
-
-
 sudo systemctl restart nginx
-
-
 sudo ufw allow 8000
 sudo ufw allow 'Nginx Full'
 
@@ -330,31 +326,15 @@ sudo tail -F /var/log/nginx/error.log
 
 
 namei -l /run/gunicorn.sock
-
-
 sudo systemctl status postgresql
-
-
 sudo systemctl start postgresql
 sudo systemctl enable postgresql
-
-
 sudo systemctl restart gunicorn
-
-
 sudo systemctl daemon-reload
 sudo systemctl restart gunicorn.socket gunicorn.service
-
-
 sudo nginx -t && sudo systemctl restart nginx
 
-
-
-
 chown -R www-data:www-data /var/www/book-hope.com
-
-
-
 
 root@themezoz:~# cat /root/.digitalocean_passwords
 DJANGO_USER=django

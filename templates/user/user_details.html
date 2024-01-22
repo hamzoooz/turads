@@ -16,7 +16,7 @@
 </div>
 
 
-<div class="info shadow "  style="background-image:url('{{ profile.profile_cover_image.url }}'); height:300px; background-position:center;background-size: cover; background-repeat:no-repeat "></div>
+<div class="info shadow "  style="background-image:url('{{ profile.profile_cover_image.url }}'); height:300px; background-position:center;background-size: content; background-repeat:no-repeat "></div>
 <div class="py-5  ">
     <div class="container ">
 
@@ -66,7 +66,7 @@
 
                 {% endif %}
 
-                <div class="position-relative shadow cover-in-sngle img-thumbnail rounded img-fluid " style="background-image: url('{{profile.profile_image.url}}');background-size: contain; height: 150px; background-repeat: no-repeat; background-position: center; border-radius: 50% !important; margin-top: -90px; border: 6px white solid; margin: -120px auto 0 ; width: 130px; "> 
+                <div class="position-relative shadow cover-in-sngle img-thumbnail rounded img-fluid " style="background-image: url('{{profile.profile_image.url}}');background-size: cover; height: 150px; background-repeat: no-repeat; background-position: center; border-radius: 50% !important; margin-top: -90px; border: 6px white solid; margin: -120px auto 0 ; width: 130px; "> 
                     {% if profile.is_active %}                      
                         <span class="position-absolute top-100  translate-middle p-2 bg-success border border-light rounded-circle" style="right: 15px;"> <span class="visually-hidden">Active</span> </span>
                     {% else %}
