@@ -134,23 +134,6 @@ def category(request , collection , collection_id ):
         "category": category,
     })
 
-    # def subcategory(request, collection, category, subcategory  ):
-    #     category = get_object_or_404(Category, id=category_id)
-    #     subcategories = Subcategory.objects.filter(category=category)
-    #     subcategory = Subcategory.objects.filter()
-    #     templates = Item.objects.filter(subcategory=subcategory)[:20]
-        
-    #     collection = Collections.objects.filter(category=category).first()
-    #     categories = Category.objects.get(name=category)
-        
-    #     return render(request, 'core/subcategories.html', {
-    #         "category": category,
-    #         "subcategories": subcategories,
-    #         "templates": templates,
-    #         "collection": collection,
-    #         "categories": categories,
-    #     })
-
 def category_details(request , collection ,category, category_id ):
     templates = Item.objects.filter(category=category_id)
     paginator = Paginator(templates, items_per_page)
@@ -167,20 +150,14 @@ def category_details(request , collection ,category, category_id ):
         'category':category,
     })
 
-    # editors_choice_item = Item.objects.filter(editors_choice=True)
-    # paginator = Paginator(editors_choice_item, items_per_page)
-    # page_number = request.GET.get('page')
-    # items_list = paginator.get_page(page_number)
-    # return render(request , 'core/pages/editors-choice.html', {
-    #     "items_list":items_list,
-    # })
-    
 def single_template(request, collection, category, template_id):
     template = Item.objects.get(id=template_id)
     collection = Collections.objects.get(slug=collection)
     category = Category.objects.filter(slug=category)
     template.number_of_views += 1
-    
+    # same_category = Item.objects.filter(category=template_id.category.id)[0:4]
+    # print(same_category)
+ 
     template.save()
     if request.user.is_authenticated:
         if (RatingSystem.objects.filter(user=request.user,item=template)):
@@ -200,6 +177,7 @@ def single_template(request, collection, category, template_id):
         "category": category,
         "rating_item": rating_item,
         "rating": rating,
+        # "same_category  ": same_category  ,
     })
 
 def get_carts_item(request):
