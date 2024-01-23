@@ -80,7 +80,17 @@ class Subcategory(models.Model):
         if not self.slug:
             self.slug = slugify(self.name)
         super().save(*args, **kwargs)
-            
+       
+       
+class Colors(models.Model):
+    name = models.CharField(max_length=50, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.name}"
+    
+         
 # Constants for choices fields
 LANGUAGES = (
     ('en', 'English'),
@@ -96,11 +106,30 @@ AVAILABILITY_CHOICES = (
     ('deleted', 'deleted'),
     )
 
+COLORS = (
+    ('red', 'red'),
+    ('black', 'black'),
+    ('gray', 'gray'),
+    ('yellow', 'yellow'),
+    # ('yellow', 'yellow'),
+    )
+
 class Item(models.Model):
     user = models.ForeignKey( CustomUser , on_delete=models.CASCADE, default=4)
     title = models.CharField(max_length=100)
     long_title = models.CharField(max_length=250, null=True, blank=True)
     file = models.FileField(upload_to="templates/files/", null=True, blank=True)
+    weight  = models.FloatField (default=0)
+    number_in_meter  = models.FloatField(default=0)
+    thickness  = models.FloatField(default=0)
+    colors = models.ManyToManyField(Colors ,  default='gray' )
+    # available = models.CharField(max_length=10, )
+    
+    lenght  = models.FloatField(default=0)
+    width  = models.FloatField(default=0)
+    heigth  = models.FloatField(default=0)
+    with_transport = models.BooleanField(default=False, help_text='0=defauwithout transport, 1=withtransport')
+ 
     url_download = models.URLField(null=True, blank=True)
     url_download2 = models.URLField(null=True, blank=True)
     url_downloa3 = models.URLField(null=True, blank=True)
@@ -116,7 +145,7 @@ class Item(models.Model):
     demo2 = models.URLField(null=True, blank=True)
     demo3 = models.URLField(null=True, blank=True)
     category = models.ManyToManyField(Category, blank=True )
-    subcategory = models.ManyToManyField(Subcategory , blank=True)
+    # subcategory = models.ManyToManyField(Subcategory , blank=True)
     slug = models.SlugField(unique=True, max_length=150 , null=True, blank=True )
     theme_image = models.ImageField(upload_to="templates/images/", null=True, blank=True)
     theme_image1 = models.ImageField(upload_to="templates/images/", null=True, blank=True)
@@ -139,7 +168,7 @@ class Item(models.Model):
     theme_image_url_9 = models.URLField(null=True, blank=True)
     published_date = models.DateField(auto_now_add=True)
     language = models.CharField(max_length=3, choices=LANGUAGES, default='en')
-    version = models.IntegerField(blank=True, null=True , default=1.0 )
+    # version = models.IntegerField(blank=True, null=True , default=1.0 )
     available = models.CharField(max_length=10, choices=AVAILABILITY_CHOICES, default='waiting')
     number_of_views = models.IntegerField(default=0)
     number_of_likes = models.IntegerField(default=0)
@@ -147,8 +176,8 @@ class Item(models.Model):
     description = RichTextField(blank=True, null=True)
     Features = RichTextField(blank=True, null=True)
     how_to_use = RichTextField(blank=True, null=True)
-    number_of_downloads = models.IntegerField(default=0)
-    number_pages = models.IntegerField(default=0)
+    number_of_paid = models.IntegerField(default=0)
+    # number_pages = models.IntegerField(default=0)
     original_price = models.FloatField(default=0, null=True, blank=True)
     selling_price = models.FloatField(default=0, null=True, blank=True)
     size = models.BigIntegerField(blank=True, null=True)
@@ -179,6 +208,9 @@ class Item(models.Model):
     def get_absolute_url(self):
         # Define the URL for a detail view of an item
         return reverse('item_detail', args=[str(self.title)])
+
+
+
 
 class MyFav(models.Model):
     user = models.ForeignKey(CustomUser , on_delete=models.CASCADE)
