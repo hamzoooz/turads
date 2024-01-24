@@ -1,40 +1,22 @@
 from pathlib import Path
+import os, random, string , secrets 
+from dotenv import load_dotenv
 from decouple import config
-import os
 import socket
 # import logging
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+load_dotenv() 
+
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-
-import secrets
-
+ 
 # Generate a new secret key
 chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
 SECRET_KEY = ''.join(secrets.choice(chars) for i in range(50))
-# print(SECRET_KEY)
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-_dv02(6swe2d3*fkpw@h$$y&yd1+e9z1)622$pg*ntttx0co@2'
 
-# Get the hostname of the machine where the Django app is running
 hostname = socket.gethostname()
 print(hostname)
-# Check if the hostname contains 'localhost' or '127.0.0.1'
-DEBUG = True  # Running on localhost
-# if 'localhost' in hostname or '127.0.0.1' in hostname:
-#     DEBUG = True  # Running on localhost
-# else:
-#     DEBUG = False  # Running on a server (production)
 
-# Additionally, you might want to set ALLOWED_HOSTS for security reasons
-# It should contain the domain names or IPs that your Django app will serve
-# if DEBUG:
-#     ALLOWED_HOSTS = ['*']  # For development (allow all hosts)
-# else:
-#     ALLOWED_HOSTS = [ 'www.themezoz.com', 'themezoz.com', '20.224.165.69']
+DEBUG = True  # Running on localhost
 
 ALLOWED_HOSTS = ['*']  # For development (allow all hosts)
 SITE_ID = 1
@@ -45,7 +27,7 @@ INSTALLED_APPS = [
     # "admin_interface",
     # "colorfield",
     # 'grappelli',
-    
+    'admin_soft.apps.AdminSoftDashboardConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,6 +45,7 @@ INSTALLED_APPS = [
     "search",
     "rating",
     "sliders",
+    "dashbord",
     
     # gateway 
     "payment",

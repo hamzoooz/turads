@@ -17,6 +17,12 @@ django-taggit
 django-crispy-forms
 drf_social_oauth2
 
-# django-otp 
-# django-otp-plugins
 
+# UI 
+django-admin-soft-dashboard
+
+python-dotenv
+# Deployment
+whitenoise 
+gunicorn
+ 
