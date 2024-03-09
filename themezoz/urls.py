@@ -27,7 +27,8 @@ urlpatterns = [
     path('' , include('rating.urls')),
     path('' , include('sliders.urls')),
     path('' , include('payment.urls')),
-    
+    path("", include('dashbord.urls')),
+    path("", include('admin_soft.urls')),
     # path('paypal/', include('paypal.standard.ipn.urls')),
     
     path('ckeditor/', include('ckeditor_uploader.urls')),

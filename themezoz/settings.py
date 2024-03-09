@@ -1,40 +1,22 @@
 from pathlib import Path
+import os, random, string , secrets 
+from dotenv import load_dotenv
 from decouple import config
-import os
 import socket
 # import logging
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+load_dotenv() 
+
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-
-import secrets
-
+ 
 # Generate a new secret key
 chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
 SECRET_KEY = ''.join(secrets.choice(chars) for i in range(50))
-# print(SECRET_KEY)
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = 'django-insecure-_dv02(6swe2d3*fkpw@h$$y&yd1+e9z1)622$pg*ntttx0co@2'
 
-# Get the hostname of the machine where the Django app is running
 hostname = socket.gethostname()
 print(hostname)
-# Check if the hostname contains 'localhost' or '127.0.0.1'
-DEBUG = True  # Running on localhost
-# if 'localhost' in hostname or '127.0.0.1' in hostname:
-#     DEBUG = True  # Running on localhost
-# else:
-#     DEBUG = False  # Running on a server (production)
 
-# Additionally, you might want to set ALLOWED_HOSTS for security reasons
-# It should contain the domain names or IPs that your Django app will serve
-# if DEBUG:
-#     ALLOWED_HOSTS = ['*']  # For development (allow all hosts)
-# else:
-#     ALLOWED_HOSTS = [ 'www.themezoz.com', 'themezoz.com', '20.224.165.69']
+DEBUG = True  # Running on localhost
 
 ALLOWED_HOSTS = ['*']  # For development (allow all hosts)
 SITE_ID = 1
@@ -45,7 +27,7 @@ INSTALLED_APPS = [
     # "admin_interface",
     # "colorfield",
     # 'grappelli',
-    
+    'admin_soft.apps.AdminSoftDashboardConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,6 +45,7 @@ INSTALLED_APPS = [
     "search",
     "rating",
     "sliders",
+    "dashbord",
     
     # gateway 
     "payment",
@@ -250,54 +233,10 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 ACCOUNT_EMAIL_REQUIRED = True
  
-# for sandbox
-# SQUARE_ACCESS_TOKEN = 'EAAAEDxQAypddU--TsBA93Cxi5jkuEui95yAXDuSldKpol8XjIdLQu31T60nNDgz'
-# SQUARE_LOCATION_ID = 'LFGNJR0BERKDX'
-# SQUARE_APPLICATION_ID = 'sandbox-sq0idb-Au4eolyhGqHHiAFCABtSpw'
-
-# # for live or borductions 
-# SQUARE_ACCESS_TOKEN = 'EAAAEVhoUBsqFzt1GunYCmuZJTaB5mLAnwc1KtLeNAXU9K98jIQHsRZpZzImOGwo'
-# SQUARE_LOCATION_ID = 'LPZK4G04Z6TDW'
-# SQUARE_APPLICATION_ID = 'sq0idp-2qbMEnkB88yC0Uk2UYOiyQ'
-
-# SQUARE_LOCATION_ID = 'your_square_location_id'
-# SQUARE_ACCESS_TOKEN = 'your_square_access_token'
-# settings.py
-
-# for live 
-# id
-# ARZ_CBKui5x0KurZlgovXcdSTQfbk_8FEEMQ5Q5eXlwkekSkmk1o3QHb-JROPSYD_rmvGvsP5BE-LClb
-# secrt key 
-# EFZykCjYwRAcIVwe3e9erjdrvdepH-R79zHurCtyDNfQ1CcrxKVUgIflr9CrEg3rvEnJkhf5HWYnzgsL
-
-# # for hamzoooz.sd
-# PAYPAL_CLIENT_ID = 'AfJGmyLywHRlfnRW_crFk-noqxHF-tC_OXpEfzEzlivKm5ulYuNlUcdutB6_u3CYca-KOiMPZeKmGUf2'
-# PAYPAL_SECRET = 'EHOrO4iHlLr5ASxrJtToJn2qrXJ4EHK55AoNcy01lteGF_rzJ_jpYctDNKnnw2vEg5NJ3TKxPrq-TUau'
-
-# for hamzoooz.sd sandbox 
-# PAYPAL_MODE = 'sandbox'  # Use 'sandbox' or 'live'
-# PAYPAL_CLIENT_ID = 'ARZmOUSD_wF9pK8jjZBMTForN-817t8eeYT-avlIb0-m6KLTnsQthsHxrz31FR9wggDm0c_NUAVACaZ3'
-# PAYPAL_SECRET = 'EB1iU2yzl_uJPrefZoQViKWO7F_nJSytNuoC6sdZfI6a7J4zMN8yDNEtaT4dnzsP1b_dP3khV-DhKvLA'
-
-# for themezoz.sd for live this ID = 47JXMTE749N3Q
 PAYPAL_MODE = 'live'  # Use 'sandbox' or 'live'
 PAYPAL_CLIENT_ID = 'ARB5VUCOPAx-qwU3WlLln0TdGVgKyPfGc--11OU2EEnW4XNE0it_Kj_oOmpIeCkmAeHsVJ0p-98gGb4X'
 PAYPAL_CLIENT_SECRET = 'EAIBt2aMTcquqxHstKZUQlV3Th2MFIr3JWQpEcHUgGE2kFqAg7Uwp-gj1H1o62AxT5fLWdoLcOMFMpS7'
-
-
-# # sandbox for bookhope.com
-# PAYPAL_CLIENT_ID = 'AfwHQIMm7KtwRxs3UDDXblG_I9BH-hxYBuK9pN73NepWh81sG4S5UNqRfEjTageN-0TGbroWCqHfVIu5'
-# PAYPAL_SECRET = 'EGctkWMhV4jsnzGMj-m7G4naHaJPvzYumi5gKkB6tfDpULy2ARSCGXjLOvUZ8hH-etyMw-3hvIwz1ifN'
-
-# # live for bookhope.com
-# PAYPAL_CLIENT_ID = 'AX2p9L08fPeLg8nebwmNpPLV3WPr9oET54OSUp0yhDcsk7R4xNHZMZnnjDYJOs-VNnRflXCXt1p8F2oo'
-# PAYPAL_SECRET = 'EPBpMOnpz_si6pTtLh_OMHOMYx0i06-9gIlQ0SPygynBx7u58QaQYA9n3S-DEhsjs1C-ryvdow8VtMzN'
-# PAYPAL_CLIENT_ID = 'AZXiQEhWJydPBpWyh7sO6KvgqbyqcMhPRyGzMsjaHTvaqXRIMvS14fKPT23wRQqrDe8jgETyAfhe4KQV'
-# PAYPAL_SECRET = 'EAYMShjZl0UPZORfUa2-bDQDq85c3V-nSMGgAxusqOnwe8MG9VOvuU_5cPzsDEpAqo5ua6nRAkMqDL-g'
-
-# PAYPAL_RECEIVER_EMAIL = 'your_paypal_email@example.com'
-# # Set PayPal mode: live or sandbox
-# PAYPAL_TEST = True  # Set to False for live transactions
+ 
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
@@ -314,10 +253,9 @@ CKEDITOR_CONFIGS = {
             ]),
         },
 }
-
-
+ 
 AUTHENTICATION_BACKENDS = [
-    # Needed to login by username in Django admin, regardless of `allauth`
+ 
     'django.contrib.auth.backends.ModelBackend',
 
     # `allauth` specific authentication methods, such as login by email
@@ -331,8 +269,7 @@ SOCIALACCOUNT_PROVIDERS = {
         'APP': {
             'client_id': 'da9f134b4296d6ef7a0c',
             'secret': '7ef2ea70a9f8687ddec52a4bb969bf8497dbfd16',
-            # 'client_id': 'da9f134b4296d6ef7a0c',
-            # 'secret': '7a3f6fc3fe3808e384d4b2ff9ca6b3b37f471714',
+ 
             'key': '',
         },
         'SCOPE': ['user',  'email'],  # Customize the scope as needed
@@ -355,8 +292,7 @@ SOCIALACCOUNT_PROVIDERS = {
             'access_type': 'online',
         }
     },
-    # scrit =  bcb0708b9db37f0650a6ad8eef469f42
-    #id =  1716742632145556
+ 
     'facebook': {
         'APP': {
             'client_id': '1716742632145556',
@@ -378,34 +314,7 @@ SOCIALACCOUNT_PROVIDERS = {
             'updated_time',
         ],
     },
-    # 'facebook': {
-    #     'METHOD': 'oauth2',
-    #     'SCOPE': ['email', 'public_profile'],
-    #     'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
-    #     'INIT_PARAMS': {'cookie': True},
-    #     'FIELDS': [
-    #         'id',
-    #         'email',
-    #         'name',
-    #         'first_name',
-    #         'last_name',
-    #         'verified',
-    #         'locale',
-    #         'timezone',
-    #         'link',
-    #         'gender',
-    #         'updated_time',
-    #     ],
-    #     'EXCHANGE_TOKEN': True,
-    #     'LOCALE_FUNC': 'path.to.callable',
-    #     'VERIFIED_EMAIL': False,
-    #     'VERSION': 'v10.0',
-    # },Hamzoooz@0784512346#themezoz.com
-    #  APP ID  =  27907813 
-    # API Key =  pfjk27Xqr9YtQa6DV24bAmrg6
-    # API Key Secret  =  tc3NMVj9QqqkFwVDPokMvSuVH07ZfpP8Z1xPerHV35NtlClFlV
-    # Client ID  =  VHNXZ0FZX1Vra284SDl1SEZvM1I6MTpjaQ
-    # client Secret  =  j0zVLzCo5oQ6Y7N1L0BRkpsNob_V7BOrWk1Ou-NyX34UC2s2cH
+ 
     'twitter': {
         'APP': {
             # clent id eVpnLUlaR21iVnpfdllqVG5TSFU6MTpjaQ
@@ -476,3 +385,7 @@ LOGGING = {
 # ACCOUNT_AUTHENTICATION_METHOD = ('username', 'email')
 
 AUTHENTICATION_METHOD = "USERNAME_EMAIL"
+
+
+
+
